@@ -1,5 +1,5 @@
 # Kochbörse
-Das Projekt Kochbörse ist eine webbasierte Plattform, die Studenten in Studentenwohnheimen verbindet: Wer gerne kocht, kann Gerichte anbieten und verkaufen. Studenten die keine Lust haben zu kochen, finden in der Nähe frische und günstige Mahlzeiten von anderen Studenten. Nutzer können sich registieren, Wochenpläne erstellen, Gerichte anbieten und Angebote durchstörbern. Ziele sind nachhaltige Nutzung von Ressourcen, kleiner Nebenverdienst für Stundenten und nebenbei neue Studenten kennenzulernen.  
+Das Projekt Kochbörse ist eine webbasierte Plattform, die Studenten in Studentenwohnheimen verbindet: Wer gerne kocht, kann Gerichte anbieten und verkaufen. Studenten die keine Lust haben zu kochen, finden in der Nähe frische und günstige Mahlzeiten von anderen Studenten. Nutzer können sich registieren, Wochenpläne erstellen, Gerichte anbieten und Angebote durchstöbern. Ziele sind nachhaltige Nutzung von Ressourcen, kleiner Nebenverdienst für Stundenten und nebenbei neue Studenten kennenzulernen.  
 
 Lars:
 Target Grade - 1,3
