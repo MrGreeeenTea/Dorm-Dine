@@ -1,4 +1,4 @@
-# Kochbörse
+# Kochbörse Team 13
 Target User: Studenten die in einem Wohnheim leben.
 
 Problemstellung: Kochen im Studentenwohnheim ist zeitaufwendig und teuer. Um große Mengen, die im Abfall landen, zu vermeiden, werden oft kleine Portionen für sich alleine gekocht. Die Folge ist, dass im Supermarkt draufgezahlt wird für kleinere Packungsgrößen. Der Aufwand lohnt sich kaum und ist der Grund dafür, warum viele Studierende entweder zu ungesunden Fertiggerichten greifen oder teure Lieferdienste wie UberEats und Wolt verwenden. 
