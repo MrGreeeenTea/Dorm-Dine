@@ -8,3 +8,7 @@ Personal Goal - Ein Verständnis dafür erhalten eine Webapp aufzubauen und zu m
 Angelina Ye:
 Target Grade - 1,3
 Personal Goals - Im Rahmen dieses Projekt möchte ich ein Grundverständnis von Full-Stack aufbauen, wie Frontend und Backend miteinander kommunizieren und technisch verbunden werden. Besonders interessiert mich Backend, da ich gerne mit Datenbanken arbeite. Des Weiteren möchte ich Grundkenntnisse von den Webtechnologien erlangen, um im späteren Berufsleben oder bei privaten Projekten die erlangten Skills anwenden zu können.
+
+Luisa: 
+Target Grade - 2,0
+Personal Goal - Grundsätzlich möchte ich den Kurs bestehen. Des Weiteren geht es mir darum, eine App zu bauen, die ein Alltagsproblem löst. Wichtig ist mir dabei, dass sie gut aussieht und einfach zu bedienen ist. Ich hoffe zu lernen, wie Frontend und Backend miteinander arbeiten, da ein Verständnis davon in vielen Jobs hilfreich sein kann. 
