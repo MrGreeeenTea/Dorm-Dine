@@ -19,3 +19,6 @@ Personal Goals - Im Rahmen dieses Projekt möchte ich ein Grundverständnis von 
 Luisa: 
 Target Grade - 2,0
 Personal Goal - Grundsätzlich möchte ich den Kurs bestehen. Des Weiteren geht es mir darum, eine App zu bauen, die ein Alltagsproblem löst. Wichtig ist mir dabei, dass sie gut aussieht und einfach zu bedienen ist. Ich hoffe zu lernen, wie Frontend und Backend miteinander arbeiten, da ein Verständnis davon in vielen Jobs hilfreich sein kann. 
+
+Julia: Target Grade - 1,7
+Personal Goal - Zu Beginn des Kurses war ich sehr überwältigt von den Anforderungen, welche ich eigentlich sehr interessant finde, aber meiner Meinung nach sehr anspruchsvoll sind für mich. Deswegen möchte ich durch diesen Kurs und das Projekt die Grundlagen von Python sicher beherrschen und auch Spaß am Programmieren finden.
