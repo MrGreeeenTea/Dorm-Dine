@@ -27,8 +27,9 @@ Dorm & Dine does not promise restaurant-quality logistics or a full marketplace 
 
 Dorm & Dine is built for two kinds of students who already live under the same roof. They have different problems, but the same solution fixes both.
 
-** Persona A — The Buyer **
-Julia Meier, 21, 3rd semester, Business Administration
+**Persona A — The Buyer** 
+
+Julia Meier, 21 years old, 3rd semester, Business Administration
 
 Julia moved into her dorm half a year ago and still hasn't figured out the whole cooking thing. It's not that she can't cook, but she just doesn't see the point when it's only for herself. She buys a bag of spinach, uses a handful, and watches the rest go soggy in the fridge. She's tried meal prepping once. It lasted four days before she gave up and ordered pizza.
 Most evenings she ends up scrolling through Wolt or UberEats, feeling vaguely guilty about spending 14€ on a burger that arrives lukewarm in a pile of plastic. She knows it's not sustainabl, but cooking a full meal at 9pm after a long day just feels like too much. So she doesn't.
@@ -38,13 +39,16 @@ What Julia actually wants is simple: something warm, real, and cheap, without ha
 Dorm & Dine is exactly that for her. She opens the app, sees what's available two floors up, taps reserve, and shows up at the right time. No account needed just to browse. No delivery fee. No guilt.
 
 
-** Persona B — The Cook **
-Lars Müller, 23, 5th semester, Computer Science
+**Persona B — The Cook**
+
+Lars Müller, 23 years old, 5th semester, Computer Science
 
 Lars actually likes cooking. He makes proper food like curries, stir-fries, the occasional homemade soup and he always makes too much, because cooking for one portion feels almost pointless.
 The extra food usually ends up in a container in his fridge, eaten reluctantly over the next two days, or quietly thrown away when it's been there too long. He's not struggling financially, but as a student he notices every euro. The idea that his grocery bill could partly pay for itself is genuinely appealing.
+
 He's also the kind of person who finds dorm life a bit more isolated than he expected. Cooking for neighbors gives him a small but real reason to interact with people he'd otherwise just nod at in the hallway.
 With Dorm & Dine, Lars posts what he's cooking that evening, sets a price that covers his ingredients, and gets a knock on the door at pickup time. His food doesn't go to waste, his costs go down, and he slowly becomes the person on his floor that everyone knows makes great food.
+
 
 
 ##  Happy Path
