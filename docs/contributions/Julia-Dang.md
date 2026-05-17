@@ -4,15 +4,8 @@ parent: Individual Contributions
 nav_order: 2
 ---
 
-{: .attention }
-> Create a separate, individual file for every team member, proposed naming scheme: `📄firstname-lastname.md`.
->
-> *Find and replace* (VS Code: <kbd>Ctrl</kbd>+<kbd>H</kbd> / <kbd>⌘</kbd>+<kbd>H</kbd>) `Jane Dane` with the student's name. On this template page, you will find this name 4 times (including in this `attention` box). 
->
-> You may delete this `attention` box.
-
 {: .no_toc }
-# Jane Dane
+# Julia Dang
 
 <details open markdown="block">
 <summary>Table of contents</summary>
@@ -25,17 +18,17 @@ nav_order: 2
 
 ### Target grade
 
-[State your target grade for this module. This is meant as a signal to your fellow team members.]
+1,7
 
 ### Personal goals
 
-[Spell out your personal goals regarding this Module, to create transparency among the team members.]
+Zu Beginn des Kurses war ich sehr überwältigt von den Anforderungen, welche ich eigentlich sehr interessant finde, aber meiner Meinung nach sehr anspruchsvoll sind für mich. Deswegen möchte ich durch diesen Kurs und das Projekt die Grundlagen von Python sicher beherrschen und auch Spaß am Programmieren finden, da ich durch Schwierigkeiten schnell demotiviert bin.
 
 ---
 
 ## Eidesstattliche Erklärung
 
-**[Jane Dane, Matrikelnr.: 1234567]**
+**[Julia Dang, Matrikelnr.: 77201600054]**
 
 Ich erkläre an Eides statt:
 
