@@ -56,3 +56,4 @@ Order confirmation (Buyer view) — A detail page for a selected meal with a con
 Profile page — Basic user info, past activity, and ratings.
 
 The scope deliberately excludes in-app payments, real-time chat, and delivery tracking — these were identified early as out of scope given the team's learning goals and project timeline.
+![](assets/images/UI-Scribble.png)
