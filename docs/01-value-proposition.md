@@ -34,6 +34,8 @@ Both personas live in the same building, which is what makes the platform viable
 
 ##  Happy Path
 
+![Happy Path - Buyer and Cook](assets\images\Happy_Path_DD.png)
+
 Registration — A new user signs up with their university email and selects their dormitory.
 Browse — The buyer opens the app and sees a feed of available meals offered by cooks in their building, including dish name, price, portion count, and pickup time.
 Order — The buyer selects a meal and confirms their interest with one tap.
@@ -47,7 +49,7 @@ This path is consistent with what the app delivers: a simple peer-to-peer meal e
 
 ## Target Scope
 
-![Entwürfe](assets/images/UI-Scribble.png)
+![Scribbles](assets/images/UI-Scribble.png)
 
 The submitted web app covers the following core screens and features:
 
