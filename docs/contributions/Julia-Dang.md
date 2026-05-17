@@ -4,7 +4,6 @@ parent: Individual Contributions
 nav_order: 2
 ---
 
-{: .no_toc }
 # Julia Dang
 
 <details open markdown="block">
