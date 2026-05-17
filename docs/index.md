@@ -8,7 +8,7 @@ nav_order: 0
 >
 > You may delete this `attention` box.
 
-# [Project Name]
+# Dorm & Dine
 
 [Include a short project description. Below, include a representative, attractive screenshot of your final web app.]
 
