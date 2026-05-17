@@ -42,9 +42,12 @@ Pickup — The buyer picks up the meal directly from the cook's room or a design
 Done — Both users can rate the interaction, building trust within the community.
 
 This path is consistent with what the app delivers: a simple peer-to-peer meal exchange within a single dormitory, without payment processing complexity or delivery infrastructure.
+
 ---
 
 ## Target Scope
+
+![Entwürfe](assets/images/UI-Scribble.png)
 
 The submitted web app covers the following core screens and features:
 
@@ -56,4 +59,4 @@ Order confirmation (Buyer view) — A detail page for a selected meal with a con
 Profile page — Basic user info, past activity, and ratings.
 
 The scope deliberately excludes in-app payments, real-time chat, and delivery tracking — these were identified early as out of scope given the team's learning goals and project timeline.
-![](assets/images/UI-Scribble.png)
+
