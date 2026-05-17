@@ -10,7 +10,6 @@ nav_order: 0
 
 ## Sample App Screen
 
-![attractive app screenshot](assets/images/fswd-intro_00.png)
 
 ---
 

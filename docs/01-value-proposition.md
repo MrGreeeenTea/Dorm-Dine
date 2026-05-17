@@ -56,16 +56,14 @@ With Dorm & Dine, Lars posts what he's cooking that evening, sets a price that c
 
 ## Target Scope
 
-![Scribbles](assets/images/UI-Scribble.png)
+![UI screens scribbles](assets\images\UI_Screens_Scribbles.jpeg)
 
-The submitted web app covers the following core screens and features:
+The scope of Dorm & Dine was defined at the start of the project by mapping out which screens and features are essential for the core user journey.
 
-Landing / Login page — Entry point with registration and login for new and returning users.
-Home / Feed — A browsable list of currently available meals in the user's dormitory, filterable by meal type or time.
-Meal listing (Cook view) — A form for cooks to post a dish, set a price, define portion count, and specify pickup time.
-Weekly plan (Cook view) — A simple weekly calendar where cooks can plan and announce upcoming meals in advance.
-Order confirmation (Buyer view) — A detail page for a selected meal with a confirm button.
-Profile page — Basic user info, past activity, and ratings.
+The app is structured around three groups of screens. Shared screens are accessible to everyone. 
+The landing page can be browsed without an account, registration and login only appear when a user tries to place an order, and the profile page is available to both buyers and cooks. 
 
-The scope deliberately excludes in-app payments, real-time chat, and delivery tracking — these were identified early as out of scope given the team's learning goals and project timeline.
+Buyer-specific screens cover the full journey from browsing the feed and viewing meal details, to confirming a reservation, tracking active orders, and submitting a rating after pickup. 
+
+Cook-specific screens allow users to post a dish with price, portions, and pickup time, plan their meals for the week, manage their active offers, and respond to incoming order notifications.
 
