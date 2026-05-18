@@ -30,7 +30,7 @@ In addition, I am highly interested in expanding my technical knowledge, especia
 
 ## Eidesstattliche Erklärung
 
-**[Lars Unger, Matrikelnr.: 77206621704]**
+[Lars Unger, Matrikelnr.: 77206621704]
 
 Ich erkläre an Eides statt:
 
