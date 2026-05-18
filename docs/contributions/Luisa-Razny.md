@@ -4,14 +4,6 @@ parent: Individual Contributions
 nav_order: 4
 ---
 
-{: .attention }
-> Create a separate, individual file for every team member, proposed naming scheme: `📄firstname-lastname.md`.
->
-> *Find and replace* (VS Code: <kbd>Ctrl</kbd>+<kbd>H</kbd> / <kbd>⌘</kbd>+<kbd>H</kbd>) `Jane Dane` with the student's name. On this template page, you will find this name 4 times (including in this `attention` box). 
->
-> You may delete this `attention` box.
-
-{: .no_toc }
 # Luisa Razny
 
 <details open markdown="block">
