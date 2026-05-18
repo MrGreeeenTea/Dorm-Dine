@@ -25,11 +25,13 @@ nav_order: 3
 
 ### Target grade
 
-[State your target grade for this module. This is meant as a signal to your fellow team members.]
+1,3
 
 ### Personal goals
 
-[Spell out your personal goals regarding this Module, to create transparency among the team members.]
+During the collaboration on this project, I would like to further develop myself in the context of practical teamwork and project-based learning. By working with tools such as GitHub and other modern development technologies, I hope to gain valuable experience that will prepare me for my future professional career and help me connect academic learning with my real world working environment.
+
+In addition, I am highly interested in expanding my technical knowledge, especially in areas such as Python and Website Building. I see this project as a great opportunity to strengthen both my programming skills and my ability to work effectively within a development team.
 
 ---
 
