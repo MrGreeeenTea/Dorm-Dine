@@ -12,7 +12,7 @@ nav_order: 4
 > You may delete this `attention` box.
 
 {: .no_toc }
-# Jane Dane
+# Luisa Razny
 
 <details open markdown="block">
 <summary>Table of contents</summary>
@@ -25,17 +25,17 @@ nav_order: 4
 
 ### Target grade
 
-[State your target grade for this module. This is meant as a signal to your fellow team members.]
+2,0 
 
 ### Personal goals
 
-[Spell out your personal goals regarding this Module, to create transparency among the team members.]
+Grundsätzlich möchte ich den Kurs bestehen. Des Weiteren geht es mir darum, eine App zu bauen, die ein Alltagsproblem löst. Wichtig ist mir dabei, dass sie gut aussieht und einfach zu bedienen ist. Ich hoffe zu lernen, wie Frontend und Backend miteinander arbeiten, da ein Verständnis davon in vielen Jobs hilfreich sein kann.
 
 ---
 
 ## Eidesstattliche Erklärung
 
-**[Jane Dane, Matrikelnr.: 1234567]**
+**[Luisa Razny, Matrikelnr.: 77207366248]**
 
 Ich erkläre an Eides statt:
 
