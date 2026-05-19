@@ -71,10 +71,3 @@ Buyer-specific screens cover the full journey from browsing the feed and viewing
 
 Cook-specific screens allow users to post a dish with price, portions, and pickup time, plan their meals for the week, manage their active offers, and respond to incoming order notifications.
 
-## Ablaufdiagramm
-
-![Ablaufdiagramm](assets\images\ablaufdiagramm1.png)
-
-To clearly define the project's scope and ensure a shared understanding of how Dorm & Dine will function, we mapped out a tentative but comprehensive user flow diagram (Ablaufdiagramm).
-
-The diagram serves as our structural foundation, guiding both our user interface design and our backend development priorities. It was purposefully created to visually map the users journey and help us identify which screens, user inputs, and background system actions are mandatory for a serviceable user experience. Using this flow we are able to pinpoint open design decisions and look for appropriate solutions. 
