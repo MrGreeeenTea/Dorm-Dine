@@ -69,5 +69,7 @@ The landing page can be browsed without an account, registration and login only 
 
 Buyer-specific screens cover the full journey from browsing the feed and viewing meal details, to confirming a reservation, tracking active orders, and submitting a rating after pickup. 
 
-Cook-specific screens allow users to post a dish with price, portions, and pickup time, plan their meals for the week, manage their active offers, and respond to incoming order notifications.
+Cook-specific screens allow users to post a dish with price, portions, and pickup time, plan their meals for the week, manage their active offers, upload pictures to prove the cleanliness of the kitchen and respond to incoming order notifications. 
+Example for the picture upload: Persona B has to upload a picture of the kitchen with a handwritten note with the current time before they prepare the meal and after they finished preparing the meal to prove that they don’t leave behind a dirty kitchen.
+
 
