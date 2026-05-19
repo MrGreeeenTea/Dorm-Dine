@@ -14,7 +14,7 @@ nav_order: 2
 </details>
 
 # Flowchart - Draft  
-![Ablaufdiagramm](assets\images\ablaufdiagramm1.png)
+![Ablaufdiagramm](assets/images/ablaufdiagramm1.png)
 
 To clearly define the project's scope and ensure a shared understanding of how Dorm & Dine will function, we mapped out a tentative but comprehensive user flow diagram (Ablaufdiagramm).
 
