@@ -4,13 +4,6 @@ parent: Individual Contributions
 nav_order: 3
 ---
 
-{: .attention }
-> Create a separate, individual file for every team member, proposed naming scheme: `📄firstname-lastname.md`.
->
-> *Find and replace* (VS Code: <kbd>Ctrl</kbd>+<kbd>H</kbd> / <kbd>⌘</kbd>+<kbd>H</kbd>) `Jane Dane` with the student's name. On this template page, you will find this name 4 times (including in this `attention` box). 
->
-> You may delete this `attention` box.
-
 {: .no_toc }
 # Lars Unger
 
@@ -25,17 +18,19 @@ nav_order: 3
 
 ### Target grade
 
-[State your target grade for this module. This is meant as a signal to your fellow team members.]
+1,3
 
 ### Personal goals
 
-[Spell out your personal goals regarding this Module, to create transparency among the team members.]
+During the collaboration on this project, I would like to further develop myself in the context of practical teamwork and project-based learning. By working with tools such as GitHub and other modern development technologies, I hope to gain valuable experience that will prepare me for my future professional career and help me connect academic learning with my real world working environment.
+
+In addition, I am highly interested in expanding my technical knowledge, especially in areas such as Python and Website Building. I see this project as a great opportunity to strengthen both my programming skills and my ability to work effectively within a development team.
 
 ---
 
 ## Eidesstattliche Erklärung
 
-**[Jane Dane, Matrikelnr.: 1234567]**
+[Lars Unger, Matrikelnr.: 77206621704]
 
 Ich erkläre an Eides statt:
 
