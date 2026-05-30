@@ -23,10 +23,10 @@ The diagram serves as our structural foundation, guiding both our user interface
 # Flowchart - Draft Rework 
 
 notes: 
--chat feature removed
--edit dish option added
--my dish screen added 
--rework of payment options
--changed some user inputs
+-chat feature removed  
+-edit dish option added  
+-my dish screen added  
+-rework of payment options  
+-changed some user inputs  
 
 ![Ablaufdiagramm Rework](assets/images/newAblaufD.png)
