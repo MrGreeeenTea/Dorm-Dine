@@ -22,7 +22,7 @@ The diagram serves as our structural foundation, guiding both our user interface
 
 # Flowchart - Draft Rework 
 
-notes: 
+notes:  
 -chat feature removed  
 -edit dish option added  
 -my dish screen added  
