@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Dorm & Dine Registrieren</h2>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>
+            {{ form.passwordagain.label }}<br>
+            {{ form.passwordagain(size=32) }}
+        </p>
+        <p>
+            {{ form.phonenumber.label }}<br>
+            {{ form.phonenumber(size=32) }}
+        </p>
+        <p>{{ form.register() }}</p>
+         </form>
+{% endblock %}

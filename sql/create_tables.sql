@@ -1,16 +1,19 @@
-CREATE TABLE todo (
+CREATE TABLE user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    complete BOOLEAN DEFAULT FALSE,
-    description TEXT NOT NULL
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    created_at CURRENT_TIMESTAMP,
+    is_buyer BOOLEAN DEFAULT FALSE,
+    is_cook BOOLEAN DEFAULT FALSE,
+    telefonnummer TEXT,
+    photo_url TEXT,
+    sprachen TEXT,
+    beschreibung TEXT,
+    studentenwohnheim_id INTEGER,
+    FOREIGN KEY (studentenwohnheim_id) REFERENCES studentenwohnheim (id) ON DELETE CASCADE
 );
-CREATE TABLE list (
+
+CREATE TABLE studentenwohnheim (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL
-);
-CREATE TABLE todo_list (
-    todo_id INTEGER,
-    list_id INTEGER,
-    PRIMARY KEY (todo_id, list_id),
-    FOREIGN KEY (todo_id) REFERENCES todo (id) ON DELETE CASCADE,
-    FOREIGN KEY (list_id) REFERENCES list (id) ON DELETE CASCADE
 );

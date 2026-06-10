@@ -1,15 +1,17 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, SubmitField, HiddenField, BooleanField, SelectField
-from wtforms.validators import InputRequired, Length
+from wtforms.validators import InputRequired, Length, EqualTo
 
-class CreateTodoForm(FlaskForm):
-    description = StringField(validators=[InputRequired(), Length(min=5)])
-    submit = SubmitField('Create')
+class LoginForm(FlaskForm):
+    email = StringField(validators=[InputRequired()])
+    password = StringField(validators=[InputRequired()])
+    login = SubmitField('Login')
 
-class TodoForm(FlaskForm):
-    method = HiddenField()
+class RegisterForm(FlaskForm):
     id = HiddenField()
-    complete = BooleanField()
-    description = StringField(validators=[InputRequired()])
-    list_id = SelectField(coerce=int, choices=[], validate_choice=False)  # (3.)
-    submit = SubmitField('Update')
+    name = StringField('Name', validators=[InputRequired(), Length(min=5)])
+    email = StringField(validators=[InputRequired()])
+    password = StringField('Passwort', validators=[InputRequired(), Length(min=8)])
+    passwordagain = StringField('Wiederhole Passwort', validators=[InputRequired(), Length(min=8), EqualTo('password')]) 
+    phonenumber = StringField('Telefonnummer', validators=[InputRequired(), Length(min=5)])
+    register = SubmitField('Registrieren')
