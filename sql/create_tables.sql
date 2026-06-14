@@ -7,33 +7,33 @@ CREATE TABLE dorm (
     place TEXT NOT NULL
 );
 
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY,
     email TEXT UNIQUE NOT NULL,
     password_hash TEXT NOT NULL,
     username  TEXT UNIQUE NOT NULL,
     first_name TEXT NOT NULL,
     last_name  TEXT NOT NULL,
-    profile_picture TEXT,                   
+    profile_picture TEXT,
     bio TEXT,
-    dorm_id INTEGER,                    
-    is_cook BOOLEAN DEFAULT FALSE,   
+    dorm_id INTEGER,
+    is_cook BOOLEAN DEFAULT FALSE,
     phone_number TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (dorm_id) REFERENCES dorm(id) ON DELETE SET NULL
 );
 
 CREATE TABLE language (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
 );
 
-CREATE TABLE users_language (
+CREATE TABLE user_language (
     language_id INTEGER NOT NULL,
-    users_id INTEGER NOT NULL,
-    PRIMARY KEY (language_id, users_id),
+    user_id INTEGER NOT NULL,
+    PRIMARY KEY (language_id, user_id),
     FOREIGN KEY (language_id) REFERENCES language(id) ON DELETE CASCADE,
-    FOREIGN KEY (users_id)  REFERENCES users(id)  ON DELETE CASCADE
+    FOREIGN KEY (user_id)  REFERENCES user(id)  ON DELETE CASCADE
 );
 
 CREATE TABLE icon (
@@ -43,14 +43,13 @@ CREATE TABLE icon (
 );
 
 CREATE TABLE dish (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     cook_id INTEGER NOT NULL,
     icon_id INTEGER,
     name TEXT NOT NULL,
     description TEXT,
-    price TEXT NOT NULL,         
+    price INTEGER NOT NULL,
     total_portions INTEGER NOT NULL,
-    left_portions INTEGER,
     pickup_time TIMESTAMP NOT NULL, 
        status TEXT NOT NULL CHECK (
         status IN (
@@ -62,22 +61,22 @@ CREATE TABLE dish (
         )
     ),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (cook_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (cook_id) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (icon_id) REFERENCES icon(id) ON DELETE SET NULL
 );
 
 CREATE TABLE dish_photo (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     dish_id INTEGER NOT NULL,
     photo_url TEXT NOT NULL,
-    is_primary BOOLEAN DEFAULT FALSE,        -- Hauptbild für Feed-Anzeige
+    is_primary BOOLEAN DEFAULT FALSE,   -- Hauptbild für Feed-Anzeige
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE
 );
 
 CREATE TABLE tag (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT UNIQUE NOT NULL               -- z.B. 'vegetarisch', 'vegan'
+    id INTEGER PRIMARY KEY,
+    name TEXT UNIQUE NOT NULL    -- z.B. 'vegetarisch', 'vegan'
 );
 
 CREATE TABLE dish_tag (
@@ -89,11 +88,11 @@ CREATE TABLE dish_tag (
 );
 
 CREATE TABLE dish_order (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     buyer_id INTEGER NOT NULL,
     dish_id INTEGER NOT NULL,
     portions INTEGER NOT NULL DEFAULT 1,
-    message TEXT,                        
+    message TEXT,             
     status TEXT NOT NULL DEFAULT 'pending' CHECK(
         status IN(
             'pending',
@@ -105,37 +104,37 @@ CREATE TABLE dish_order (
     ),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (buyer_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (buyer_id) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (dish_id)  REFERENCES dish(id) ON DELETE CASCADE
 );
 
 -- Küchensauberkeits-Nachweise (Foto + handgeschriebener Zeitstempel)
 CREATE TABLE kitchen_proof (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     dish_id INTEGER NOT NULL,
     cook_id INTEGER NOT NULL,
     photo_url TEXT NOT NULL,
     proof_type TEXT NOT NULL CHECK (proof_type IN ('before', 'after')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE,
-    FOREIGN KEY (cook_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (cook_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE message (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     sender_id INTEGER NOT NULL,
     receiver_id INTEGER NOT NULL,
     order_id INTEGER,                    
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (sender_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (order_id) REFERENCES dish_order(id) ON DELETE SET NULL
 );
 
 CREATE TABLE notification (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    users_id INTEGER NOT NULL,
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER NOT NULL,
     order_id INTEGER,
     types TEXT NOT NULL CHECK(
         types IN(
@@ -148,6 +147,6 @@ CREATE TABLE notification (
     message TEXT NOT NULL,
     is_read BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (users_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (order_id) REFERENCES dish_order(id) ON DELETE SET NULL
 );

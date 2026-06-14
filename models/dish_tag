@@ -1,0 +1,6 @@
+from db import db
+
+class DishTag(db.Model):
+    __tablename__ = "dish_tag"
+    dsih_id = db.Column(db.Integer, db.ForgeinKey("dish.id"), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForgeinKey("tag.id"), primary_key=True)
