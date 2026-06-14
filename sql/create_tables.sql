@@ -1,20 +1,3 @@
-<<<<<<< Updated upstream
-CREATE TABLE todo (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    complete BOOLEAN DEFAULT FALSE,
-    description TEXT NOT NULL
-);
-CREATE TABLE list (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL
-);
-CREATE TABLE todo_list (
-    todo_id INTEGER,
-    list_id INTEGER,
-    PRIMARY KEY (todo_id, list_id),
-    FOREIGN KEY (todo_id) REFERENCES todo (id) ON DELETE CASCADE,
-    FOREIGN KEY (list_id) REFERENCES list (id) ON DELETE CASCADE
-=======
 CREATE TABLE dorm (
     id INTEGER PRIMARY KEY, 
     name TEXT NOT NULL,
@@ -166,5 +149,4 @@ CREATE TABLE notification (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (order_id) REFERENCES dish_order(id) ON DELETE SET NULL
->>>>>>> Stashed changes
 );
