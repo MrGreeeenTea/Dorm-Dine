@@ -1,6 +1,9 @@
 from flask import Flask, render_template, redirect, url_for
+import forms
+from forms import RegisterForm, LoginForm
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'toller-secret-key'
 
 # landing page
 @app.route('/')
@@ -19,23 +22,28 @@ def meal_detail(meal_id):
 
 # Gerichte posten
 @app.route('/post', methods=['GET', 'POST'])
+#@login_required
 def post_meal():
     return redirect(url_for('post'))
 
-# Profil anzeigen
-@app.route('/profile/<int: profil_id>')
+# Profil anzeigen /<int: profil_id>
+@app.route('/profile')
+#wenn nicht angemeldet dann zu login weiterleiten
 def profil():
     return redirect(url_for('profile'))
 
 # Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return redirect(url_for('login'))
+    form = forms.LoginForm()
+    return render_template('login.html', title='Login', form=form)
+
 
 # Register
-@app.route('/register' , methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return redirect(url_for('register'))
+    form = forms.RegisterForm()
+    return render_template('register.html', title='Registrieren', form=form)
 
 # Bestellübersicht
 @app.route('/order_view')
