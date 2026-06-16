@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block TITLE %}Feed{% endblock %}
+
+{% block CONTENT %}
+<h2>Verfügbare Gerichte</h2>
+
+{% if dishes %}
+    {% for dish in dishes %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ dish.name }}</h5>
+                <p class="card-text">{{ dish.description }}</p>
+                <p><strong>Preis:</strong> {{ dish.price }}€ &nbsp; <strong>Portionen:</strong> {{ dish.left_portions }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Noch keine Gerichte vorhanden.</p>
+{% endif %}
+{% endblock %}
