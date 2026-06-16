@@ -48,7 +48,7 @@ CREATE TABLE dish (
     icon_id INTEGER,
     name TEXT NOT NULL,
     description TEXT,
-    price INTEGER NOT NULL,
+    price REAL NOT NULL,
     total_portions INTEGER NOT NULL,
     pickup_time TIMESTAMP NOT NULL, 
        status TEXT NOT NULL CHECK (
@@ -108,7 +108,7 @@ CREATE TABLE dish_order (
     FOREIGN KEY (dish_id)  REFERENCES dish(id) ON DELETE CASCADE
 );
 
--- Küchensauberkeits-Nachweise (Foto + handgeschriebener Zeitstempel)
+-- Küchensauberkeitsnachweis (Foto + handgeschriebener Zeitstempel)
 CREATE TABLE kitchen_proof (
     id INTEGER PRIMARY KEY,
     dish_id INTEGER NOT NULL,
