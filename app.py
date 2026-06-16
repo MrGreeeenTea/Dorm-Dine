@@ -23,7 +23,7 @@ def post_meal():
     return redirect(url_for('post'))
 
 # Profil anzeigen
-@app.route('/profile/<int: profil_id>')
+@app.route('/profile/<int:profil_id>')
 def profil():
     return redirect(url_for('profile'))
 
