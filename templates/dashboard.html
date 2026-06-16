@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block TITLE %}Dorm-Dine | Mein Dashboard{% endblock %}
+
+{% block CONTENT %}
+<div class="container my-3">
+    
+    <div class="mb-4">
+        <h1>Dashboard</h1>
+        
+        <form method="POST" action="/dashboard" class="row g-2 align-items-center">
+            <div class="col-auto">
+                <label for="dorm_id" class="col-form-label">Aktuelles Wohnheim filtern:</label>
+            </div>
+            <div class="col-auto">
+                <select id="dorm_id" name="dorm_id" class="form-select">
+                    {% for dorm in dorm_list %}
+                        <option value="{{ dorm.id }}" {% if selected_dorm_id == dorm.id %}selected{% endif %}>
+                            {{ dorm.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Speichern</button>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="row g-4">
+        
+        <div class="col-12 col-lg-6">
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">🛒 Meine Bestellungen</h5>
+                </div>
+                <div class="card-body">
+                    {% if bestellungen %}
+                        <div class="list-group">
+                            {% for b in bestellungen %}
+                            <div class="list-group-item">
+                                <a href="{{ url_for('meal_detail', meal_id=b.dish_id) }}">
+                                    {{ b.dish_name }}
+                                </a>
+                                <p class="mb-1 mt-1">Status: {{ b.status }}</p>
+                                <p class="mb-1">Portionen: {{ b.portions }}</p>
+                                <p class="mb-0">Gesamtpreis: {{ b.price * b.portions }}€</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>Du hast aktuell keine aktiven Bestellungen.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">🍳 Meine Gerichte</h5>
+                    <a href="{{ url_for('post_meal') }}" class="btn btn-primary">Neues Gericht</a>
+                </div>
+                <div class="card-body">
+                    {% if gerichte %}
+                        <div class="table-responsive">
+                            <table class="table align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Gericht</th>
+                                        <th>Portionen</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for g in gerichte %}
+                                    <tr>
+                                        <td>{{ g.name }}</td>
+                                        <td>{{ g.total_portions }}</td>
+                                        <td>{{ g.status }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p>Du hast noch keine eigenen Gerichte eingetragen.</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="col-12 col-lg-6">
+            
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="mb-0">🍽️ Aktuelle Angebote</h5>
+                </div>
+                <div class="card-body">
+                    {% if angebote %}
+                        {% for angebot in angebote %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <a href="{{ url_for('meal_detail', meal_id=angebot.id) }}">
+                                    {{ angebot.name }}
+                                </a>
+                                <p class="mt-2 mb-2">{{ angebot.price }}€</p>
+                                <p class="card-text mb-2">{{ angebot.description }}</p>
+                                <p class="mb-3">Verfügbare Portionen: {{ angebot.total_portions }}</p>
+                                <a href="{{ url_for('feed') }}" class="btn btn-primary">Jetzt Bestellen</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>Keine Gerichte für dieses Wohnheim verfügbar.</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
