@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, jsonify, request
+from flask import Flask, render_template, redirect, url_for, jsonify, flash
 from flask_bootstrap import Bootstrap5
 
 #for userauth
@@ -69,7 +69,7 @@ def profile(username):
         print("existiert nicht")
         return render_template('404.html'), 404
     
-    #für die Edit Logik
+    #für die Edit Logik später
     #is_my_profile = (
         #current_user.is_authenticated and
         #current_user.id == profile_user.id
@@ -92,11 +92,14 @@ def login():
         ).scalar_one_or_none()  #SQL Alchemy fswd 
         if not user: #wenn user none ist
             print("Noch nicht registriert")
+            flash('This E-Mail is not registered yet')
         elif not user.check_password(form.password.data):
             print("password falsch")
+            flash('The password is wrong')
         else: 
             login_user(user)
             print("Erfolgreich")
+            flash('You were successfully logged in')
             return redirect(url_for('feed'))
 
     return render_template('login.html', title='Login', form=form)
@@ -116,6 +119,7 @@ def register():
         ).scalars().first()
         if user:
             print('E-Mail bereits registriert!')
+            flash('E-Mail already registered')
             return render_template('register.html', title='Registrieren', form=form)
         
         user = db.session.execute(
@@ -123,13 +127,15 @@ def register():
         ).scalars().first()
         if user:
             print('Username existiert bereits!')
+            flash('Username already taken')
             return render_template('register.html', title='Registrieren', form=form)
         
         user = db.session.execute(
            select(User).filter_by(phone_number=form.phonenumber.data)
         ).scalars().first()
         if user:
-            print('Username existiert bereits!')
+            print('Telefonnummer existier bereits!')
+            flash('Phone Number is already used')
             return render_template('register.html', title='Registrieren', form=form)
 
 
@@ -149,6 +155,7 @@ def register():
         db.session.commit()
         login_user(user)
         print("erfolgreich registriert")
+        flash('You were successfully logged in')
         return redirect(url_for('feed'))
 
     return render_template('register.html', title='Registrieren', form=form)
@@ -163,6 +170,7 @@ def order_view():
 def logout():
     logout_user()   #Flask Login
     print("ausgeloggt")
+    flash('You are logged out')
     return redirect(url_for('index'))
 
 @app.route('/insert/sample')
