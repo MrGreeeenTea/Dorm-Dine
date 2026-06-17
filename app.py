@@ -39,7 +39,7 @@ def load_user(id): #Erklärt die DB für LoginManaager
 # landing page
 @app.route('/')
 def index():
-    return "Coming soon", 200
+    return "Coming soon"
 
 # feed von den meals
 @app.route('/feed')
@@ -50,13 +50,13 @@ def feed():
 # einzelne Gerichte
 @app.route('/dishes/<int:dish_id>')
 def get_dish(dish_id):
-    dish = Dish.query.get_or_404(dish_id)
+    dish = db.session.execute(Dish, dish.id).scalars()
     return jsonify({"id": dish.id, "name": dish.name, "description": dish.description, "price": dish.price, "left_portions": dish.left_portions, "status": dish.status})
 
 # Gerichte posten
 @app.route('/post', methods=['GET', 'POST'])
 def post_meal():
-    return "Coming soon", 200
+    return "Coming soon"
 
 # Profil anzeigen
 @app.route('/profile/<username>')
@@ -156,7 +156,7 @@ def register():
 # Bestellübersicht
 @app.route('/order_view')
 def order_view():
-    return "Coming soon", 200
+    return "Coming soon"
 
 @app.route('/logout', methods=['GET'])
 @login_required
