@@ -4,7 +4,7 @@ from flask_bootstrap import Bootstrap5
 #for userauth
 import forms
 from forms import RegisterForm, LoginForm
-from flask_login import LoginManager, login_user, logout_user, login_required #https://flask-login.readthedocs.io/en/latest/
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user #https://flask-login.readthedocs.io/en/latest/
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import select
 
@@ -32,9 +32,9 @@ with app.app_context():
 login_manager = LoginManager() 
 login_manager.init_app(app)
 
-@login_manager.user_loader #für profiles später
-def load_user(id):
-    return db.session.get(User, id)
+@login_manager.user_loader #für profiles später Login
+def load_user(id): #Erklärt die DB für LoginManaager
+    return db.session.get(User, id) #SQL Alchemy fswd
 
 # landing page
 @app.route('/')
@@ -59,19 +59,37 @@ def post_meal():
     return "Coming soon", 200
 
 # Profil anzeigen
-@app.route('/profile/<int:profil_id>')
-def profil(profil_id):
-    return "Coming soon", 200
+@app.route('/profile/<username>')
+def profile(username):
+    profile_user = db.session.execute(
+            select(User).filter_by(username=username)  
+        ).scalar_one_or_none()
+    
+    if not profile_user:
+        print("existiert nicht")
+        return render_template('404.html'), 404
+    
+    #für die Edit Logik
+    #is_my_profile = (
+        #current_user.is_authenticated and
+        #current_user.id == profile_user.id
+    #)
+    
+    return render_template('profile.html', profile_user=profile_user)
 
 # Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+
+    if current_user.is_authenticated:
+        return redirect(url_for('feed'))
+
     form = forms.LoginForm()
 
-    if form.validate_on_submit(): #prüft ob POST und ob alle daten valid sind, wenn true, Flask WTF
+    if form.validate_on_submit(): #prüft ob POST und ob alle daten valid sind, Flask WTF
         user = db.session.execute(
-            select(User).filter_by(email=form.email.data)
-        ).scalar_one_or_none() #user objekt oder none
+            select(User).filter_by(email=form.email.data)  
+        ).scalar_one_or_none()  #SQL Alchemy fswd 
         if not user: #wenn user none ist
             print("Noch nicht registriert")
         elif not user.check_password(form.password.data):
@@ -79,13 +97,17 @@ def login():
         else: 
             login_user(user)
             print("Erfolgreich")
-            return redirect(url_for('index'))
+            return redirect(url_for('feed'))
 
     return render_template('login.html', title='Login', form=form)
 
 # Register
 @app.route('/register' , methods=['GET', 'POST'])
 def register():
+
+    if current_user.is_authenticated:
+        return redirect(url_for('feed'))
+
     form = forms.RegisterForm()
 
     if form.validate_on_submit(): 
@@ -127,7 +149,7 @@ def register():
         db.session.commit()
         login_user(user)
         print("erfolgreich registriert")
-        return redirect(url_for('index'))
+        return redirect(url_for('feed'))
 
     return render_template('register.html', title='Registrieren', form=form)
 
