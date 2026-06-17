@@ -8,4 +8,8 @@
      <p> Username: {{ profile_user.username }}</p>
      <p> Bio: {{ profile_user.bio }}</p>
 
+     {% if current_user == profile_user %}
+          <a href="{{ url_for('edit_profile', username=profile_user.username) }}">Profil bearbeiten</a>
+     {% endif %}
+
 {% endblock %}
