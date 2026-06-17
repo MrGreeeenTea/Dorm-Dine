@@ -1,0 +1,34 @@
+{% extends "base.html"%}
+
+{% block CONTENT %}
+
+<div class = "container">
+
+<h1 class = "mb-4">Order Meal</h1>
+
+<div class = "card mb-3">
+    <div class = "card-body">
+    <h4 class = "card-title">Pasta Carbonara</h4>
+    <p>Price:4.50</p>
+    <p>Available: Yes</p>
+    <p>Dorm: Osloer Straße Foyer</p>
+
+    <form>
+        <div class= "mb-3">
+            <label class ="form-label">Portions</label>
+            <input type = "number" class "form-control" value = "1">
+        </div>
+
+        <a href = "/payment_success_cash" class="btn btn-secondary">
+            Pay Cash
+        </a>
+        <a href = "/payment_success_paypal" class="btn btn-primary">
+            Pay with PayPal
+        </a>
+    </form>
+
+    </div>
+
+</div>
+</div>
+{% endblock %}
