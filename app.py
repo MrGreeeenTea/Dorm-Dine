@@ -1,6 +1,12 @@
-from flask import Flask, render_template, redirect, url_for, jsonify
+from flask import Flask, render_template, redirect, url_for, jsonify, request
 from flask_bootstrap import Bootstrap5
 
+#for userauth
+import forms
+from forms import RegisterForm, LoginForm
+from flask_login import LoginManager, login_user, logout_user, login_required #https://flask-login.readthedocs.io/en/latest/
+from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import select
 
 app = Flask(__name__)
 app.config.from_mapping(
@@ -10,6 +16,9 @@ app.config.from_mapping(
 
 from db import db, insert_sample
 from models import *
+from models.user import User
+from models.dorm import Dorm
+
 
 bootstrap = Bootstrap5(app)
 
@@ -19,6 +28,13 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+
+login_manager = LoginManager() 
+login_manager.init_app(app)
+
+@login_manager.user_loader #für profiles später
+def load_user(id):
+    return db.session.get(User, id)
 
 # landing page
 @app.route('/')
@@ -50,17 +66,82 @@ def profil(profil_id):
 # Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return "Coming soon", 200
+    form = forms.LoginForm()
+
+    if form.validate_on_submit(): #prüft ob POST und ob alle daten valid sind, wenn true, Flask WTF
+        user = db.session.execute(
+            select(User).filter_by(email=form.email.data)
+        ).scalar_one_or_none() #user objekt oder none
+        if not user: #wenn user none ist
+            print("Noch nicht registriert")
+        elif not user.check_password(form.password.data):
+            print("password falsch")
+        else: 
+            login_user(user)
+            print("Erfolgreich")
+            return redirect(url_for('index'))
+
+    return render_template('login.html', title='Login', form=form)
 
 # Register
 @app.route('/register' , methods=['GET', 'POST'])
 def register():
-    return "Coming soon", 200
+    form = forms.RegisterForm()
+
+    if form.validate_on_submit(): 
+        user = db.session.execute(
+            select(User).filter_by(email=form.email.data)
+        ).scalars().first()
+        if user:
+            print('E-Mail bereits registriert!')
+            return render_template('register.html', title='Registrieren', form=form)
+        
+        user = db.session.execute(
+            select(User).filter_by(username=form.username.data)
+        ).scalars().first()
+        if user:
+            print('Username existiert bereits!')
+            return render_template('register.html', title='Registrieren', form=form)
+        
+        user = db.session.execute(
+           select(User).filter_by(phone_number=form.phonenumber.data)
+        ).scalars().first()
+        if user:
+            print('Username existiert bereits!')
+            return render_template('register.html', title='Registrieren', form=form)
+
+
+        user = User(
+
+            email = form.email.data,
+            first_name = form.first_name.data,
+            last_name = form.last_name.data,
+            username = form.username.data,
+            bio = form.bio.data or None,
+            is_cook = form.is_cook.data,
+            dorm_id = form.dorm_id.data,
+            phone_number = form.phonenumber.data,
+        )
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        print("erfolgreich registriert")
+        return redirect(url_for('index'))
+
+    return render_template('register.html', title='Registrieren', form=form)
 
 # Bestellübersicht
 @app.route('/order_view')
 def order_view():
     return "Coming soon", 200
+
+@app.route('/logout', methods=['GET'])
+@login_required
+def logout():
+    logout_user()   #Flask Login
+    print("ausgeloggt")
+    return redirect(url_for('index'))
 
 @app.route('/insert/sample')
 def run_insert_sample():
