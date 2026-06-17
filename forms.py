@@ -13,3 +13,10 @@ class TodoForm(FlaskForm):
     description = StringField(validators=[InputRequired()])
     list_id = SelectField(coerce=int, choices=[], validate_choice=False)  # (3.)
     submit = SubmitField('Update')
+
+class MealForm(FlaskForm):
+    name = StringField('Name des Gerichts', validators=[InputRequired()])
+    description = StringField('Beschreibung', validators=[InputRequired()])
+    price = DecimalField('Preis (€)', validators=[InputRequired()])
+    portions = IntegerField('Verfügbare Portionen', validators=[InputRequired()])
+    submit = SubmitField('Gericht anbieten')

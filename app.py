@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect, request, url_for
+import sqlite3
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_bootstrap import Bootstrap5
 
 app = Flask(__name__)
@@ -58,7 +59,7 @@ def http_internal_server_error(e):
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     # Wohnheim wählen + speichern simulation
-    # Defaults to the item from create_tables/ insert_sample
+    # defaults to the item from create_tables/ insert_sample
     selected_dorm_id = 1 
     if request.method == 'POST' and 'dorm_id' in request.form:
         selected_dorm_id = int(request.form.get('dorm_id'))
@@ -86,7 +87,7 @@ def dashboard():
             {"id": 1, "dish_id": 1, "name": "Lasagne", "description": "Traditional Italian pasta baked with rich meat sauce, layered with creamy béchamel and Gouda cheese.", "price": 2.00, "total_portions": 6, "status": "scheduled"}
         ]
     else:
-        # Empty list if they select another dorm block!
+        # empty list if they select another dorm
         aktuelle_angebote = []
 
 
