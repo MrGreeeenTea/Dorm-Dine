@@ -5,7 +5,7 @@ nav_order: 3
 ---
 
 {: .no_toc }
-# Data Model
+# Flowchart
 
 <details open markdown="block">
 <summary>Table of contents</summary>
