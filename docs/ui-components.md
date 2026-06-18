@@ -1,6 +1,6 @@
 ---
 title: UI Components
-nav_exclude: false
+nav_exclude: true
 nav_order: 99
 ---
 
