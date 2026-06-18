@@ -92,7 +92,7 @@
     {% for offer in current_offers %}
 
         <h4>
-            <a href="{{ url_for('meal_detail', meal_id=offer.id) }}">
+            <a href="{{ url_for('get_dish', dish_id=offer.id) }}">
                 {{ offer.name }}
             </a>
         </h4>

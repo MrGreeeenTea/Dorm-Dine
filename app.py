@@ -64,20 +64,12 @@ def feed():
     dishes = db.session.execute(db.select(Dish).order_by(Dish.id)).scalars()
     return render_template('feed.html', dishes=dishes)
 
-
 # einzelne Gerichte
 @app.route('/dishes/<int:dish_id>')
-@app.route('/dishes/<int:meal_id>')
-def meal_detail(meal_id):
-    dish = Dish.query.get_or_404(meal_id)
-    return jsonify({
-        "id": dish.id,
-        "name": dish.name,
-        "description": dish.description,
-        "price": dish.price,
-        "left_portions": dish.left_portions,
-        "status": dish.status
-    })
+def get_dish(dish_id):
+    dish = db.session.execute(Dish, dish.id).scalars()
+    return jsonify({"id": dish.id, "name": dish.name, "description": dish.description, "price": dish.price, "left_portions": dish.left_portions, "status": dish.status})
+
 
 
 # post meals
