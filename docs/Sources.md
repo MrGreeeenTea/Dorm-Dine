@@ -16,6 +16,7 @@ nav_order: 6
 # Sources
 
 # KI-Directory
+
 | Nr. | KI-based Tool | Usage/ Purpose | Affected part of the project | Notes, Procedure, Prompts |
 | --- | --- | --- | --- | --- |
 | **1**  | PerplexityAi | Helping with ErrorsMessages, Explaning Bootstrap and showcasing usage, static vs dynamic, logic questions | Dashboard.html, dashboard logic in app.py | [KI-Prompt 1](https://www.perplexity.ai/search/c9fd230f-0038-4062-8c64-287c6c16888b?sm=d) |
