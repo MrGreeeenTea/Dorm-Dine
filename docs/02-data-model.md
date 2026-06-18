@@ -1,6 +1,7 @@
 ---
 title: Data Model
-nav_order: 2
+parent: Technical Docs
+nav_order: 1
 ---
 
 {: .no_toc }
