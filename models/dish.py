@@ -10,7 +10,7 @@ class Dish(db.Model):
     total_portions = db.Column(db.Integer, nullable=False)
     left_portions = db.Column(db.Integer, nullable=True)
     pickup_time = db.Column(db.DateTime, nullable=False)
-    status = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.now())
-
+    status = db.Column(db.String, nullable=False, default='scheduled')
+    ingredients = db.Column(db.String, nullable=True) #could also use db.text
     dish_orders = db.relationship("DishOrder", back_populates="dish")
