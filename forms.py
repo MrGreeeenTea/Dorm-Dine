@@ -1,22 +1,35 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import StringField, SubmitField, HiddenField, BooleanField, SelectField
-from wtforms.validators import InputRequired, Length
+from wtforms.fields import StringField, SubmitField, HiddenField, BooleanField, SelectField, PasswordField, IntegerField
+from wtforms.validators import InputRequired, Length, EqualTo
 
-class CreateTodoForm(FlaskForm):
-    description = StringField(validators=[InputRequired(), Length(min=5)])
-    submit = SubmitField('Create')
+#https://flask-wtf.readthedocs.io/en/1.2.x/
 
-class TodoForm(FlaskForm):
-    method = HiddenField()
+class LoginForm(FlaskForm):
+    email = StringField(validators=[InputRequired()])
+    password = PasswordField(validators=[InputRequired()])
+    login = SubmitField('Login')
+
+
+class RegisterForm(FlaskForm):
     id = HiddenField()
-    complete = BooleanField()
-    description = StringField(validators=[InputRequired()])
-    list_id = SelectField(coerce=int, choices=[], validate_choice=False)  # (3.)
-    submit = SubmitField('Update')
+    first_name = StringField('Vorname', validators=[InputRequired(), Length(min=3)])
+    last_name = StringField('Nachname', validators=[InputRequired(), Length(min=3)])
+    username = StringField('Username', validators=[InputRequired(), Length(min=3)])
+    email = StringField('E-Mail-Adresse', validators=[InputRequired()])
+    password = PasswordField('Passwort', validators=[InputRequired(), Length(min=8)])
+    passwordagain = PasswordField('Wiederhole Passwort', validators=[InputRequired(), Length(min=8), EqualTo('password')]) 
+    phonenumber = StringField('Telefonnummer', validators=[InputRequired(), Length(min=5)])
+    is_cook = BooleanField('Ich habe Interesse für Dorm&Dine zu kochen')
+    dorm_id = SelectField('Wähle dein Wohnheim aus', choices=[(1, 'Wohnheim Nollendorfstraße')], coerce=int, validators=[InputRequired()])
+    bio = StringField('Schreibe etwas über dich')
+    created_at = HiddenField()
+    register = SubmitField('Registrieren')
 
 class MealForm(FlaskForm):
-    name = StringField('Name des Gerichts', validators=[InputRequired()])
-    description = StringField('Beschreibung', validators=[InputRequired()])
-    price = DecimalField('Preis (€)', validators=[InputRequired()])
-    portions = IntegerField('Verfügbare Portionen', validators=[InputRequired()])
-    submit = SubmitField('Gericht anbieten')
+    name = StringField('Name of the Dish', validators=[InputRequired()])
+    description = StringField('Description', validators=[InputRequired()])
+    price = StringField('Price (€)', validators=[InputRequired()])
+    portions = IntegerField('Available Portions', validators=[InputRequired()])
+    status = SelectField('Status', choices=[('scheduled', 'New'), ('active', 'Ready for Pickup')])
+    ingredients = StringField('Ingredients', validators=[InputRequired()])
+    submit = SubmitField('Offer Dish')
