@@ -60,11 +60,11 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 | :-- | :-- | :-- | :-- |
 | Flowchart | [final standing flowchart](005b073f95725904fa4bcf39b58e0a73d21e7ab9) | See left | there is multiple commits for the flowchart before that but this is the most recent one. the others where placed on wrong pages or are just upload commits. |
 | Dashboard.html | [current dashboard layout](ab2194c7c31ef4a9dd08d70d143e164937c7f0e3) | See left  | there is another commit for the first bootstrang heavy layout. |
-| post_meal.html | [current post_meal layout](ab2194c7c31ef4a9dd08d70d143e164937c7f0e3)) | See left  |  |
-| db.py app.py forms.py changes for my parts | [db.py added more samples for testing](6f33b445a82c352ca2076f7a1f787be97e195098)
-[app.py changes to include functions for dashboard and post_meal that makes it no longer static](4aa8413ca2cf64ee4e9cffaaca7e7ebe72466c29) 
-[forms.py changes for new class MealForm(FlaskForm)](d964087dae3040b36e0583f5a0505b95c81b4bf5) | See left | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
-| Evidence folder for Product Discovery | [final standing flowchart](005b073f95725904fa4bcf39b58e0a73d21e7ab9) | See left  |  |
+| post_meal.html | [current post_meal layout](ab2194c7c31ef4a9dd08d70d143e164937c7f0e3) | See left  |  |
+| db.py changes for my parts | [db.py added more samples for testing](6f33b445a82c352ca2076f7a1f787be97e195098) | See left  | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
+| app.py changes for my parts | [app.py changes to include functions for dashboard and post_meal that makes it no longer static](4aa8413ca2cf64ee4e9cffaaca7e7ebe72466c29) | See left  | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
+| forms.py changes for my parts | [forms.py changes for new class MealForm(FlaskForm)](d964087dae3040b36e0583f5a0505b95c81b4bf5) | See left | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
+| Evidence folder for Product Discovery | []() | See left  |  |
 
 ---
 
