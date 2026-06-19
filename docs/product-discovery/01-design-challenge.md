@@ -46,6 +46,6 @@ The next logical questions we have to ask ourselves are:
 
 ## Raw Material
 
-[List / link / paste any material that you created or referenced while working on the **Design Challenge** definition.
+[Google sheets summary Dorm&Dine Responses](https://docs.google.com/spreadsheets/d/1jzynQ9zOTGKRChzysHX0aURJN8EQXkIZzQ_WONaraU8/edit?usp=sharing)
 
-Ideally, put any material that you created on your own in the folder `📁 docs/product-discovery/material/01-dc/` (e.g., a scribble as .png image file), and link it on this page.]
+[Evidence Dorm&Dine Forms](docs/product-discovery/material/01-dc/)
