@@ -12,7 +12,9 @@ Without knowing who the 9 people who responded to our first survey are though, a
 So i just asked 3 people i know in my Wohnheim after giving them a very short briefing about our app.
 
 Person A - Denis: He likes to cook. Unsure about selling meals but sees the potential 
+
 Person B - Este: Very unsure. Would rather buy but would use it to sell maybe once a month if she made a lot of food
+
 Person C - Sri: Studies full time. Works two jobs. No time for making food. No time for services.
 
 
