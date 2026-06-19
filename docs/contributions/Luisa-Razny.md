@@ -43,14 +43,14 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 | \# | My contribution | Why I am proud of it | Which challenge I overcame |
 | :-- | :-- | :-- | :-- |
-| 1 | [Describe your individual contribution] |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
+| 1 | Flowchart creation | It helped me visualize what we wanted to achieve and how we would get there. It was more work than I originally anticipated. Helped bring up a lot of important thoughts we later had to discuss. | 1) Making it. 2) Reworking it properply because my handwriting was unreadable. 3) Motivation to investe time. |
+| 2 | Dashboard.html, post_meal.html + logic for both in app.py | I am very happy I managed to get it running. I spent a lot of time in front of my pc for a couple of days to being very frustrated because the first html layout wasnt working as intended. But I eventually reworked it to be easier and my logic finally worked! I changed it from being static to working with the database. | At first making use of Bootstrang. It is not as easy as others make it sound. And I personallly thing it gets really confusing the more you write. I eventually had to change it to make my code work. And because a static dashboard wasn't gonna work. Making it work with the database was confusing but rewarding. |
+| 3 | ... |  |  |
 
 ## Design Decisions that I led
 
-1. [DD #00](../design-decisions/dd-00.md)
-2. [DD #01](../design-decisions/dd-01.md)
+1. [DD #03](../design-decisions/dd-03.md)
+2. ...
 
 ---
 
@@ -72,6 +72,6 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 | #   | AI Tool | Purpose of Use | Affected Sections (Code + Docs) | Remarks, Procedure, Prompts |
 | :-- | :--     | :--            | :--                             | :--                         |
-| 01  |         |                |                                 |                             |
-| 02  |         |                |                                 |                             |
-| ... |         |                |                                 |                             |
+| 01  | PerplexityAi | Helping with ErrorsMessages, Explaning Bootstrap and showcasing usage, static vs dynamic, logic questions | Dashboard.html, dashboard logic in app.py | [KI-Prompt 1](https://www.perplexity.ai/search/c9fd230f-0038-4062-8c64-287c6c16888b?sm=d) |
+
+
