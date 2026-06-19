@@ -64,7 +64,7 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 | db.py changes for my parts | [db.py added more samples for testing](6f33b445a82c352ca2076f7a1f787be97e195098) | See left  | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
 | app.py changes for my parts | [app.py changes to include functions for dashboard and post_meal that makes it no longer static](4aa8413ca2cf64ee4e9cffaaca7e7ebe72466c29) | See left  | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
 | forms.py changes for my parts | [forms.py changes for new class MealForm(FlaskForm)](d964087dae3040b36e0583f5a0505b95c81b4bf5) | See left | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
-| Evidence folder for Product Discovery | []() | See left  |  |
+| Product Discovery | [design challenges](91ec1537c1909c15984e8098f4ccc2138fd4dc75) ; [target user + problems](9c54422d49f5edbe0ad6b2805c89570252bae827) ; [solution elements](fa71608bd8db2ddea379491e01149997cba8a867) ; [tests](fb33305e4c2fd5043e6cce29a2ba062613c6c3e3) | See left |  |
 
 ---
 
