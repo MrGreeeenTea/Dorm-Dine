@@ -48,4 +48,4 @@ The next logical questions we have to ask ourselves are:
 
 [Google sheets summary Dorm&Dine Responses](https://docs.google.com/spreadsheets/d/1jzynQ9zOTGKRChzysHX0aURJN8EQXkIZzQ_WONaraU8/edit?usp=sharing)
 
-[Evidence Dorm&Dine Forms](docs/product-discovery/material/01-dc/)
+[Evidence Dorm&Dine Forms]([docs/product-discovery/material/01-dc/](https://github.com/MrGreeeenTea/Dorm-Dine/tree/main/docs/product-discovery/material/01-dc))
