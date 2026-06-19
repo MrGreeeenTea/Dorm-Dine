@@ -16,12 +16,12 @@ We received a total of 9 responses (as of 19-Jun-2026).
 
 [Google sheets summary Dorm&Dine Responses](https://docs.google.com/spreadsheets/d/1jzynQ9zOTGKRChzysHX0aURJN8EQXkIZzQ_WONaraU8/edit?usp=sharing)
 
-![Dorm& Dine form responses](assets/images/1pd.png) 
+![Dorm& Dine form responses](../assets/images/1pd.png) 
 
-![](assets/images/2pd.png) 
+![](../assets/images/2pd.png) 
 
-![](assets/images/3pd.png) 
+![](../assets/images/3pd.png) 
 
-![](assets/images/4pd.png) 
+![](../assets/images/4pd.png) 
 
-![](assets/images/5pd.png) 
+![](../assets/images/5pd.png) 
