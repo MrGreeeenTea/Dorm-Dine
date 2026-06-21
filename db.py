@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
@@ -23,7 +24,7 @@ def insert_sample():
     # Beispieldaten erstellen
     dorm1 = Dorm(name='Wohnheim Nollendorfstraße', adress='Nollendorfstraße 21a', district='Tempelhof-Schöneberg', postcode='10777', place='Berlin')
 
-    user1 = User(email='max.mustermann@example.com', password_hash='Password_123', username='max123', first_name='Max', last_name='Mustermann', bio='Hey, my name is Max and I study Business Information Systems!', is_cook=True, phone_number='+49123456789')
+    user1 = User(email='max.mustermann@example.com', password_hash=generate_password_hash('Password_123'), username='max123', first_name='Max', last_name='Mustermann', bio='Hey, my name is Max and I study Business Information Systems!', is_cook=True, phone_number='+49123456789')
     user1.dorm = dorm1
 
     dish1 = Dish(name='Lasagne', description='Traditional Italian pasta baked with rich meat sauce, layered with creamy béchamel and Gouda cheese.', price='2.00', total_portions=6, left_portions=6, pickup_time=db.func.now(), status='scheduled')
