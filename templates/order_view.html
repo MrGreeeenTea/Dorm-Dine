@@ -2,33 +2,47 @@
 
 {% block CONTENT %}
 
-<div class = "container">
+<div class = "container mt-4">
 
 <h1 class = "mb-4">Order Meal</h1>
 
 <div class = "card mb-3">
     <div class = "card-body">
-    <h4 class = "card-title">Pasta Carbonara</h4>
-    <p>Price:4.50</p>
-    <p>Available: Yes</p>
-    <p>Dorm: Osloer Straße Foyer</p>
+    <h4 class = "card-title">{{ dish.name }}</h4>
+    <p><strong>Price:</strong>
+        {{ dish.left_portions }} €
+    </p>
+    <p><strong>Portions available:</strong>
+        {{ "%-2f"|format(dish.price) }} €
+    </p>
+    <p><strong>Description:</strong>
+        {{ dish.description }} €
+    </p>
 
-    <form>
-        <div class= "mb-3">
-            <label class ="form-label">Portions</label>
-            <input type = "number" class "form-control" value = "1">
+    {% if error %}
+
+        <div class = "alert alert-danger">
+            {{ error }}
         </div>
 
-        <a href = "/payment_success_cash" class="btn btn-secondary">
-            Pay Cash
-        </a>
-        <a href = "/payment_success_paypal" class="btn btn-primary">
-            Pay with PayPal
-        </a>
+    <form method = "POST">
+        <div class= "mb-3">
+            <label class ="form-label">Portions</label>
+            <input type = "number" class = "form-control" name = "portions" value = "1" min= "1" max = "{{ dish.left_portions}}">
+        </div>
+
+        <button type = "submit" formaction = "{{ url_for('payment_success_cash', dish_id = dish.id)}}" class = "btn btn-secondary">
+        </button>
+
+        <button type = "submit" formaction = "{{ url_for('payment_success_paypal', dish_id = dish.id)}}" class = "btn btn-primary">
+        </button>
+
     </form>
-
     </div>
-
 </div>
+
+<a href = "{{ url_for('feed')}}" class="btn btn-outline-secondary">
+            Back to meals
+        </a>
 </div>
 {% endblock %}

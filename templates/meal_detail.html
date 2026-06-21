@@ -12,7 +12,7 @@
 <p>Allergies: None</p>
 <p>Food Details: Pasta, Panchetta, Eggs, Parmesan</p>
 
-<a href = "/order_view" class = "btn btn-primary">
+<a href = "{{ url_for('order view', dish_id = dish.id )}}" class = "btn btn-primary">
     Order Meal
 </a>
 </div>
