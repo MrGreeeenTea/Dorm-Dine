@@ -28,10 +28,6 @@ def insert_sample():
 
     user1 = User(email='max.mustermann@example.com', password_hash=generate_password_hash('Password_123'), username='max123', first_name='Max', last_name='Mustermann', bio='Hey, my name is Max and I study Business Information Systems!', is_cook=True, phone_number='+49123456789')
     user1.dorm = dorm1
-    user2 = User(email='lisa.meier@example.com', password_hash=generate_password_hash('Password_112'), username='lisa112', first_name='Lisa', last_name='Meier', bio='Hey, my name is Lisa and I study Computer Science!', is_cook=False, phone_number='+49123456788')
-    user2.dorm = dorm2
-    user3 = User(email='anna.schmidt@example.com', password_hash=generate_password_hash('Password_113'), username='anna113', first_name='Anna', last_name='Schmidt', bio='Hey, my name is Anna and I study Psychology!', is_cook=True, phone_number='+49123456787')
-    user3.dorm = dorm3
 
     dish1 = Dish(name='Lasagne', description='Traditional Italian pasta baked with rich meat sauce, layered with creamy béchamel and Gouda cheese.', price='2.00', total_portions=6, left_portions=6, pickup_time=db.func.now(), status='scheduled')
     dish1.cook_id = 1
@@ -42,7 +38,7 @@ def insert_sample():
     lang1 = Language(name='German')
     lang2 = Language(name='English')
 
-    db.session.add_all([dorm1, dorm2, dorm3, user1, user2, user3, tag1, tag2, lang1, lang2])
+    db.session.add_all([dorm1, dorm2, dorm3, user1, tag1, tag2, lang1, lang2])
     db.session.commit()
 
     from datetime import datetime

@@ -22,24 +22,10 @@ from models import *
 from models.user import User
 from models.dorm import Dorm
 
-
 bootstrap = Bootstrap5(app)
 
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-# @login_required in front blocks access to routes for non-logged in users and redirects to login page
-login_manager.login_view = 'login'
-
-
-@login_manager.user_loader #für profiles später
-def load_user(id):
-    return db.session.get(User, id)
-
-
-# create tables if they don't exist yet
-with app.app_context():
-    db.create_all()
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dormanddine.db"
+db.init_app(app)
 
 login_manager = LoginManager() 
 login_manager.init_app(app)
@@ -47,6 +33,9 @@ login_manager.init_app(app)
 @login_manager.user_loader #für profiles später Login
 def load_user(id): #Erklärt die DB für LoginManaager
     return db.session.get(User, id) #SQL Alchemy fswd
+
+with app.app_context():
+    db.create_all()
 
 # landing page
 @app.route('/')
@@ -63,14 +52,14 @@ def feed():
 # einzelne Gerichte
 @app.route('/dishes/<int:dish_id>')
 def get_dish(dish_id):
-    dish = db.session.execute(Dish, dish.id).scalars()
+    dish = db.session.get(Dish, dish.id).scalars()
     #return jsonify({"id": dish.id, "name": dish.name, "description": dish.description, "price": dish.price, "left_portions": dish.left_portions, "status": dish.status})
     return render_template('meal_detail.html', dish=dish)
 
 # Bestellübersicht
 @app.route('/order_view/<int:dish_id>')
 def order_view(dish_id):
-    dish = db.get_or_404(Dish, dish_id)
+    dish = db.session.get(Dish, dish.id).scalars()
     return render_template('order_view.html', dish = dish)
 
 # Payment Success Cash
@@ -222,15 +211,6 @@ def register():
         return redirect(url_for('feed'))
 
     return render_template('register.html', title='Registrieren', form=form)
-
-
-# Logout
-@app.route('/logout', methods=['GET'])
-@login_required
-def logout():
-    logout_user()   #Flask Login
-    print("ausgeloggt")
-    return redirect(url_for('index'))
 
 
 @app.route('/insert/sample')
