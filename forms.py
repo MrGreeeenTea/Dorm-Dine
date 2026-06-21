@@ -1,24 +1,35 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import StringField, SubmitField, HiddenField, BooleanField, SelectField, PasswordField
+from wtforms.fields import StringField, SubmitField, HiddenField, BooleanField, SelectField, PasswordField, IntegerField
 from wtforms.validators import InputRequired, Length, EqualTo
 
 #https://flask-wtf.readthedocs.io/en/1.2.x/
 
 class LoginForm(FlaskForm):
-    email = StringField('E-Mail', validators=[InputRequired()])
-    password = PasswordField('Password',validators=[InputRequired()])
+    email = StringField(validators=[InputRequired()])
+    password = PasswordField(validators=[InputRequired()])
     login = SubmitField('Login')
 
 
 class RegisterForm(FlaskForm):
-    first_name = StringField('First Name', validators=[InputRequired(), Length(min=3)])
-    last_name = StringField('Last Name', validators=[InputRequired(), Length(min=3)])
+    id = HiddenField()
+    first_name = StringField('Vorname', validators=[InputRequired(), Length(min=3)])
+    last_name = StringField('Nachname', validators=[InputRequired(), Length(min=3)])
     username = StringField('Username', validators=[InputRequired(), Length(min=3)])
-    email = StringField('E-Mail-address', validators=[InputRequired()])
-    password = PasswordField('Password', validators=[InputRequired(), Length(min=8)])
-    passwordagain = PasswordField('Repeat Password', validators=[InputRequired(), Length(min=8), EqualTo('password')]) 
-    phonenumber = StringField('Phone Number', validators=[InputRequired(), Length(min=5)])
-    is_cook = BooleanField('I am interested in Cooking for Dorm&Dine')
-    dorm_id = SelectField('Choose your dormitory', choices=[(1, 'Wohnheim Nollendorfstraße')], coerce=int, validators=[InputRequired()])
-    bio = StringField('Write a short Bio about yourself')
-    register = SubmitField('Registrate')
+    email = StringField('E-Mail-Adresse', validators=[InputRequired()])
+    password = PasswordField('Passwort', validators=[InputRequired(), Length(min=8)])
+    passwordagain = PasswordField('Wiederhole Passwort', validators=[InputRequired(), Length(min=8), EqualTo('password')]) 
+    phonenumber = StringField('Telefonnummer', validators=[InputRequired(), Length(min=5)])
+    is_cook = BooleanField('Ich habe Interesse für Dorm&Dine zu kochen')
+    dorm_id = SelectField('Wähle dein Wohnheim aus', choices=[(1, 'Wohnheim Nollendorfstraße')], coerce=int, validators=[InputRequired()])
+    bio = StringField('Schreibe etwas über dich')
+    created_at = HiddenField()
+    register = SubmitField('Registrieren')
+
+class MealForm(FlaskForm):
+    name = StringField('Name of the Dish', validators=[InputRequired()])
+    description = StringField('Description', validators=[InputRequired()])
+    price = StringField('Price (€)', validators=[InputRequired()])
+    portions = IntegerField('Available Portions', validators=[InputRequired()])
+    status = SelectField('Status', choices=[('scheduled', 'New'), ('active', 'Ready for Pickup')])
+    ingredients = StringField('Ingredients', validators=[InputRequired()])
+    submit = SubmitField('Offer Dish')

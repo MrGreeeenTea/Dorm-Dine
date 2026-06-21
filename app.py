@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, jsonify, request
+from flask import Flask, render_template, redirect, request, url_for, flash, jsonify
 from flask_bootstrap import Bootstrap5
 
 #for userauth
@@ -9,6 +9,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import select
 
 app = Flask(__name__)
+
+
+# configuration environment
 app.config.from_mapping(
     SECRET_KEY = 'secret_key_just_for_dev_environment',
     BOOTSTRAP_BOOTSWATCH_THEME = 'pulse'
@@ -22,10 +25,19 @@ from models.dorm import Dorm
 
 bootstrap = Bootstrap5(app)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dormanddine.db"
 
-db.init_app(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+# @login_required in front blocks access to routes for non-logged in users and redirects to login page
+login_manager.login_view = 'login'
 
+
+@login_manager.user_loader #für profiles später
+def load_user(id):
+    return db.session.get(User, id)
+
+
+# create tables if they don't exist yet
 with app.app_context():
     db.create_all()
 
@@ -41,6 +53,7 @@ def load_user(id): #Erklärt die DB für LoginManaager
 def index():
     return "Coming soon"
 
+
 # feed von den meals
 @app.route('/feed')
 def feed():
@@ -50,7 +63,8 @@ def feed():
 # einzelne Gerichte
 @app.route('/dishes/<int:dish_id>')
 def get_dish(dish_id):
-    dish = db.get_or_404(Dish, dish_id)
+    dish = db.session.execute(Dish, dish.id).scalars()
+    #return jsonify({"id": dish.id, "name": dish.name, "description": dish.description, "price": dish.price, "left_portions": dish.left_portions, "status": dish.status})
     return render_template('meal_detail.html', dish=dish)
 
 # Bestellübersicht
@@ -69,26 +83,36 @@ def payment_success_cash(dish_id):
 def payment_success_paypal(dish_id):
     return complete_order(dish_id, "PayPal")
 
-# Gerichte posten
+
+
+# post meals
 @app.route('/post', methods=['GET', 'POST'])
+@login_required
 def post_meal():
-    return "Coming soon"
+    form = MealForm() #form object erstellen, html template frontend tool
+   
+    if form.validate_on_submit():
+        # build Dish/ Meal using form data and database table format
+        new_dish = Dish( #database model Dish, siehe models/dish.py
+            cook_id = current_user.id,
+            name = form.name.data,
+            description = form.description.data,
+            price = form.price.data,
+            total_portions = form.portions.data,
+            left_portions = form.portions.data,
+            pickup_time = db.func.now(),  # Uses the DB clock, included bc we want to show the pickup time in the future, so that it appears in the feed
+            status = form.status.data,
+            ingredients = form.ingredients.data
+        )
+       
+        db.session.add(new_dish)
+        db.session.commit()
+       
+        flash('Dish was successfully added!', 'success') #success turns box green yay
+        return redirect(url_for('dashboard'))
+       
+    return render_template('post_meal.html', form=form)
 
-def complete_order(dish_id, payment_method):
-    dish = db.get_or_404(Dish, dish_id)
-
-    portions = request.form.get("portions", 1, type = int)
-
-    if portions < 1:
-        return render_template( 'order_view.html', dish = dish, error = "Please select at least one portion.")
-
-    if portions > dish.left_portions:
-        return render_template( 'order_view.html', dish = dish, error = "Not enough portions available.")
-    
-    dish.left_portions = dish.left_portions - portions
-    db.session.commit()
-
-    return render_template( 'payment_success.html', dish = dish, portions = portions, payment_method = payment_method)
 
 # Profil anzeigen
 @app.route('/profile/<username>')
@@ -118,10 +142,11 @@ def logout():
     flash('You are logged out')
     return redirect(url_for('index'))
 
+
+
 # Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-
     if current_user.is_authenticated:
         return redirect(url_for('feed'))
 
@@ -133,14 +158,18 @@ def login():
         ).scalar_one_or_none()  #SQL Alchemy fswd 
         if not user: #wenn user none ist
             print("Noch nicht registriert")
+            flash('This E-Mail is not registered yet')
         elif not user.check_password(form.password.data):
             print("password falsch")
+            flash('The password is wrong')
         else: 
             login_user(user)
             print("Erfolgreich")
+            flash('You were successfully logged in')
             return redirect(url_for('feed'))
 
     return render_template('login.html', title='Login', form=form)
+
 
 # Register
 @app.route('/register' , methods=['GET', 'POST'])
@@ -194,66 +223,104 @@ def register():
 
     return render_template('register.html', title='Registrieren', form=form)
 
+
+# Logout
+@app.route('/logout', methods=['GET'])
+@login_required
+def logout():
+    logout_user()   #Flask Login
+    print("ausgeloggt")
+    return redirect(url_for('index'))
+
+
 @app.route('/insert/sample')
 def run_insert_sample():
     insert_sample()
     return 'Database flushed and populated with some sample data.'
 
+
+#
 @app.errorhandler(404)
 def http_not_found(e):
     return render_template('404.html'), 404
+
 
 @app.errorhandler(500)
 def http_internal_server_error(e):
     return render_template('500.html'), 500
 
 
-# Dashboard 
+# Dashboard
 @app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
 def dashboard():
-    # Wohnheim wählen + speichern simulation
-    # Defaults to the item from create_tables/ insert_sample
-    selected_dorm_id = 1 
-    if request.method == 'POST' and 'dorm_id' in request.form:
+    # use users assigned dorm profile, fallback to ID 1 if not set
+    selected_dorm_id = current_user.dorm_id or 1 #or 1 to avoid errors for users without dorm assigned
+    if request.method == 'POST' and 'dorm_id' in request.form: #this kinda overrides their chosen dorm_id, dunno if thats good
         selected_dorm_id = int(request.form.get('dorm_id'))
 
-    # List of dormitories 
-    dorm_list = [
-        {"id": 1, "name": "Studentenwohnheim Mitte", "adress": "Musterstraße 12"},
-        {"id": 2, "name": "Campus Wohnheim Wedding", "adress": "Amrumer Str. 20"},
-        {"id": 3, "name": "Lichtenberg Apartments", "adress": "Einbecker Str. 45"}
-    ]
+    # get dorm list from database
+    dorms = db.session.execute(select(Dorm)).scalars().all()
+    dorm_list = [{"id": d.id, "name": d.name, "adress": d.adress} for d in dorms]
 
-    # meine bestellungen bsp
-    meine_bestellungen = [
-        {"id": 1, "dish_id": 1, "dish_name": "Lasagne", "portions": 2, "price": 2.00, "status": "pending", "message": "Thank you!"}
-    ]
+    # get orders for current user
+    orders = db.session.execute(
+        select(DishOrder).filter_by(buyer_id=current_user.id)
+    ).scalars().all()
+   
+    # build list of orders 
+    my_orders = [] #means empty list
+    for o in orders: #runs through orders n adds them
+        my_orders.append({
+            "id": o.id, #converts complexe to easy for jinja rendering
+            "dish_id": o.dish_id,
+            "dish_name": o.dish.name,
+            "portions": o.portions,
+            "price": float(o.dish.price),
+            "status": o.status
+        })
 
-        # gerichte bsp
-    meine_gerichte = [
-        {"id": 1, "dish_id": 1, "name": "Lasagne", "price": 2.00, "total_portions": 6, "status": "scheduled"}
-    ]
+    # get meals created by this user
+    my_dishes = db.session.execute(
+        select(Dish).filter_by(cook_id=current_user.id)
+    ).scalars().all()
+   
+   # build list of meals
+    my_meals = [{
+        "id": d.id,
+        "name": d.name,
+        "total_portions": d.total_portions,
+        "status": d.status
+    } for d in my_dishes]
 
-    # angebote bsp, angebot only shown if dorm 1 selected
-    if selected_dorm_id == 1:
-        aktuelle_angebote = [
-            {"id": 1, "dish_id": 1, "name": "Lasagne", "description": "Traditional Italian pasta baked with rich meat sauce, layered with creamy béchamel and Gouda cheese.", "price": 2.00, "total_portions": 6, "status": "scheduled"}
-        ]
-    else:
-        # Empty list if they select another dorm block!
-        aktuelle_angebote = []
+    # show meals in selected dorm
+    offers = db.session.execute(
+        select(Dish)
+        .join(User, Dish.cook_id == User.id)
+        .filter(User.dorm_id == selected_dorm_id)
+        .filter(Dish.status.in_(['scheduled', 'active'])) #so it wont show meals that are already completed
+    ).scalars().all()
 
+    # build list of meals
+    current_offers = [{
+        "id": o.id,
+        "name": o.name,
+        "description": o.description,
+        "price": float(o.price),
+        "total_portions": o.left_portions,
+        "status": o.status
+    } for o in offers]
 
-    # so my page opens
+    # render dashboard template with all the data
     return render_template(
         'dashboard.html',
         selected_dorm_id=selected_dorm_id,
         dorm_list=dorm_list,
-        bestellungen=meine_bestellungen,
-        angebote=aktuelle_angebote,
-        gerichte=meine_gerichte
+        my_orders=my_orders,
+        current_offers=current_offers,
+        my_meals=my_meals
     )
 
-
+# run app
 if __name__ == '__main__':
     app.run(debug=True)
