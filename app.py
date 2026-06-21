@@ -101,3 +101,54 @@ def http_not_found(e):
 @app.errorhandler(500)
 def http_internal_server_error(e):
     return render_template('500.html'), 500
+
+
+# Dashboard 
+@app.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    # Wohnheim wählen + speichern simulation
+    # Defaults to the item from create_tables/ insert_sample
+    selected_dorm_id = 1 
+    if request.method == 'POST' and 'dorm_id' in request.form:
+        selected_dorm_id = int(request.form.get('dorm_id'))
+
+    # List of dormitories 
+    dorm_list = [
+        {"id": 1, "name": "Studentenwohnheim Mitte", "adress": "Musterstraße 12"},
+        {"id": 2, "name": "Campus Wohnheim Wedding", "adress": "Amrumer Str. 20"},
+        {"id": 3, "name": "Lichtenberg Apartments", "adress": "Einbecker Str. 45"}
+    ]
+
+    # meine bestellungen bsp
+    meine_bestellungen = [
+        {"id": 1, "dish_id": 1, "dish_name": "Lasagne", "portions": 2, "price": 2.00, "status": "pending", "message": "Thank you!"}
+    ]
+
+        # gerichte bsp
+    meine_gerichte = [
+        {"id": 1, "dish_id": 1, "name": "Lasagne", "price": 2.00, "total_portions": 6, "status": "scheduled"}
+    ]
+
+    # angebote bsp, angebot only shown if dorm 1 selected
+    if selected_dorm_id == 1:
+        aktuelle_angebote = [
+            {"id": 1, "dish_id": 1, "name": "Lasagne", "description": "Traditional Italian pasta baked with rich meat sauce, layered with creamy béchamel and Gouda cheese.", "price": 2.00, "total_portions": 6, "status": "scheduled"}
+        ]
+    else:
+        # Empty list if they select another dorm block!
+        aktuelle_angebote = []
+
+
+    # so my page opens
+    return render_template(
+        'dashboard.html',
+        selected_dorm_id=selected_dorm_id,
+        dorm_list=dorm_list,
+        bestellungen=meine_bestellungen,
+        angebote=aktuelle_angebote,
+        gerichte=meine_gerichte
+    )
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
