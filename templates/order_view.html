@@ -9,14 +9,14 @@
 <div class = "card mb-3">
     <div class = "card-body">
     <h4 class = "card-title">{{ dish.name }}</h4>
-    <p><strong>Price:</strong>
-        {{ dish.left_portions }} €
-    </p>
     <p><strong>Portions available:</strong>
-        {{ "%-2f"|format(dish.price) }} €
+        {{ dish.left_portions }} 
+    </p>
+    <p><strong>Price:</strong>
+        {{ "%.2f"|format(dish.price) }} €
     </p>
     <p><strong>Description:</strong>
-        {{ dish.description }} €
+        {{ dish.description }} 
     </p>
 
     {% if error %}
@@ -25,6 +25,8 @@
             {{ error }}
         </div>
 
+    {% endif %}
+
     <form method = "POST">
         <div class= "mb-3">
             <label class ="form-label">Portions</label>
@@ -32,9 +34,11 @@
         </div>
 
         <button type = "submit" formaction = "{{ url_for('payment_success_cash', dish_id = dish.id)}}" class = "btn btn-secondary">
+        Pay Cash
         </button>
 
         <button type = "submit" formaction = "{{ url_for('payment_success_paypal', dish_id = dish.id)}}" class = "btn btn-primary">
+        Pay PayPal
         </button>
 
     </form>

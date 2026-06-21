@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, jsonify
+from flask import Flask, render_template, redirect, url_for, jsonify, request
 from flask_bootstrap import Bootstrap5
 
 
@@ -38,7 +38,7 @@ def get_dish(dish_id):
     return render_template('meal_detail.html', dish=dish)
 
 # Bestellübersicht
-@app.route('/order_view/<int: dish_id>')
+@app.route('/order_view/<int:dish_id>')
 def order_view(dish_id):
     dish = db.get_or_404(Dish, dish_id)
     return render_template('order_view.html', dish = dish)
@@ -46,12 +46,12 @@ def order_view(dish_id):
 # Payment Success Cash
 @app.route('/payment_success_cash/<int:dish_id>', methods=['POST'])
 def payment_success_cash(dish_id):
-    return render_template(dish_id, "Cash")
+    return complete_order(dish_id, "Cash")
 
 # Payment Success PayPal
 @app.route('/payment_success_paypal/<int:dish_id>', methods=['POST'])
 def payment_success_paypal(dish_id):
-    return render_template(dish_id, "PayPal")
+    return complete_order(dish_id, "PayPal")
 
 # Gerichte posten
 @app.route('/post', methods=['GET', 'POST'])

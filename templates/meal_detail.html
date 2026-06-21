@@ -1,22 +1,33 @@
 {%extends "base.html" %}
 {% block  CONTENT%}
-<div class = "container">
+<div class = "container mt-4">
 
 <h1 class = "mb-4">Meals Details</h1>
 
 <div class = "card mb-3">
+<div class = "card-body">
+    <h4 class = "card-title">{{ dish.name }}</h4>
 
-<h4 class = "card-title">Pasta Carbonara</h4>
-<p>Price: 4.50</p>
-<p>Cook: Lars</p>
-<p>Allergies: None</p>
-<p>Food Details: Pasta, Panchetta, Eggs, Parmesan</p>
-
-<a href = "{{ url_for('order view', dish_id = dish.id )}}" class = "btn btn-primary">
-    Order Meal
-</a>
+    <p><strong>Portions available:</strong>
+        {{ dish.left_portions }} 
+    </p>
+    <p><strong>Price:</strong>
+        {{ "%.2f"|format(dish.price) }} €
+    </p>
+    <p><strong>Description:</strong>
+        {{ dish.description }} 
+    </p>
+    <p><strong>Status:</strong>
+        {{ dish.status }} 
+    </p>
+    <a href = "{{ url_for('order_view', dish_id = dish.id )}}" class = "btn btn-primary">
+        Order Meal
+    </a>
+    <a href = "{{ url_for('feed') }}" class = "btn btn-secondary">
+        Back to Meals
+    </a>
 </div>
-
+</div>
 </div>
 
 {% endblock  %}
