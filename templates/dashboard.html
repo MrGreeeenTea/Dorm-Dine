@@ -42,11 +42,12 @@
                         <div class="list-group">
                             {% for b in bestellungen %}
                             <div class="list-group-item">
-                                <a href="{{ url_for('meal_detail', meal_id=b.dish_id) }}">
+                                <a href="{{ url_for('get_dish', dish_id=b.dish_id) }}">
                                     {{ b.dish_name }}
                                 </a>
                                 <p class="mb-1 mt-1">Status: {{ b.status }}</p>
-                                <p class="mb-1">Portionen: {{ b.portions }}</p>
+                                <!-- Hier muss die Portionsmenge geholt werden die bestellt wurde nicht die die noch übrig sind-->
+                                <p class="mb-1">Portionen: {{ b.portions }}</p> 
                                 <p class="mb-0">Gesamtpreis: {{ b.price * b.portions }}€</p>
                             </div>
                             {% endfor %}
@@ -103,11 +104,12 @@
                         {% for angebot in angebote %}
                         <div class="card mb-3">
                             <div class="card-body">
-                                <a href="{{ url_for('meal_detail', meal_id=angebot.id) }}">
+                                <a href="{{ url_for('get_dish', dish_id=angebot.id) }}">
                                     {{ angebot.name }}
                                 </a>
                                 <p class="mt-2 mb-2">{{ angebot.price }}€</p>
                                 <p class="card-text mb-2">{{ angebot.description }}</p>
+                                <!-- verf. portionen muss geupdated werden -->
                                 <p class="mb-3">Verfügbare Portionen: {{ angebot.total_portions }}</p>
                                 <a href="{{ url_for('feed') }}" class="btn btn-primary">Jetzt Bestellen</a>
                             </div>

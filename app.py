@@ -23,21 +23,21 @@ with app.app_context():
 # landing page
 @app.route('/')
 def index():
-    return "Coming soon"
+    return render_template('landingpage.html')
 
-# feed von den meals
+# Übersicht aller verfügbaren Gerichte
 @app.route('/feed')
 def feed():
     dishes = db.session.execute(db.select(Dish).order_by(Dish.id)).scalars().all()
     return render_template('feed.html', dishes=dishes)
 
-# einzelne Gerichte
+# Details zum aufgewählten Gericht
 @app.route('/dishes/<int:dish_id>')
 def get_dish(dish_id):
     dish = db.get_or_404(Dish, dish_id)
     return render_template('meal_detail.html', dish=dish)
 
-# Bestellübersicht
+# Übersicht der Menge und der Bestellung
 @app.route('/order_view/<int:dish_id>')
 def order_view(dish_id):
     dish = db.get_or_404(Dish, dish_id)
