@@ -109,6 +109,15 @@ def profile(username):
     
     return render_template('profile.html', profile_user=profile_user)
 
+#Logout
+@app.route('/logout', methods=['GET'])
+@login_required
+def logout():
+    logout_user()   #Flask Login
+    print("ausgeloggt")
+    flash('You are logged out')
+    return redirect(url_for('index'))
+
 # Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -184,11 +193,6 @@ def register():
         return redirect(url_for('feed'))
 
     return render_template('register.html', title='Registrieren', form=form)
-
-# Bestellübersicht
-@app.route('/order_view')
-def order_view():
-    return "Coming soon"
 
 @app.route('/insert/sample')
 def run_insert_sample():
