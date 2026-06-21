@@ -34,7 +34,7 @@ def feed():
 # einzelne Gerichte
 @app.route('/dishes/<int:dish_id>')
 def get_dish(dish_id):
-    dish = db.session.execute(Dish, dish.id).scalars()
+    dish = db.session.get(Dish, dish_id)
     return jsonify({"id": dish.id, "name": dish.name, "description": dish.description, "price": dish.price, "left_portions": dish.left_portions, "status": dish.status})
 
 # Gerichte posten
