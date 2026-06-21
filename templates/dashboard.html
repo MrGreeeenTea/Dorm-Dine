@@ -40,7 +40,7 @@
     {% for order in my_orders %}
         <p>
             <strong>
-                <a href="{{ url_for('meal_detail', meal_id=order.dish_id) }}">
+                <a href="{{ url_for('meal_detail', dish_id=order.dish_id) }}">
                     {{ order.dish_name }}
                 </a>
             </strong><br>
@@ -107,7 +107,7 @@
         </p>
 
 <p>
-    <a href="{{ url_for('order_view', meal_id=offer.id) }}" class="dashboard-button">
+    <a href="{{ url_for('order_view', dish_id=offer.id) }}" class="dashboard-button">
         Order Now
     </a>
 </p>

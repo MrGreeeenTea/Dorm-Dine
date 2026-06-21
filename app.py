@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap5
 
 #for userauth
 import forms
-from forms import RegisterForm, LoginForm
+from forms import *
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user #https://flask-login.readthedocs.io/en/latest/
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import select
@@ -19,8 +19,6 @@ app.config.from_mapping(
 
 from db import db, insert_sample
 from models import *
-from models.user import User
-from models.dorm import Dorm
 
 bootstrap = Bootstrap5(app)
 
@@ -52,14 +50,14 @@ def feed():
 # einzelne Gerichte
 @app.route('/dishes/<int:dish_id>')
 def get_dish(dish_id):
-    dish = db.session.get(Dish, dish.id).scalars()
+    dish = db.session.get(Dish, dish_id)
     #return jsonify({"id": dish.id, "name": dish.name, "description": dish.description, "price": dish.price, "left_portions": dish.left_portions, "status": dish.status})
     return render_template('meal_detail.html', dish=dish)
 
 # Bestellübersicht
 @app.route('/order_view/<int:dish_id>')
 def order_view(dish_id):
-    dish = db.session.get(Dish, dish.id).scalars()
+    dish = db.session.get(Dish, dish_id)
     return render_template('order_view.html', dish = dish)
 
 # Payment Success Cash
@@ -72,6 +70,21 @@ def payment_success_cash(dish_id):
 def payment_success_paypal(dish_id):
     return complete_order(dish_id, "PayPal")
 
+def complete_order(dish_id, payment_method):
+    dish = db.session.get(Dish, dish_id)
+
+    portions = request.form.get("portions", 1, type = int)
+
+    if portions < 1:
+        return render_template( 'order_view.html', dish = dish, error = "Please select at least one portion.")
+
+    if portions > dish.left_portions:
+        return render_template( 'order_view.html', dish = dish, error = "Not enough portions available.")
+    
+    dish.left_portions = dish.left_portions - portions
+    db.session.commit()
+
+    return render_template( 'payment_success.html', dish = dish, portions = portions, payment_method = payment_method)
 
 
 # post meals
@@ -114,13 +127,26 @@ def profile(username):
         print("existiert nicht")
         return render_template('404.html'), 404
     
-    #für die Edit Logik
-    #is_my_profile = (
-        #current_user.is_authenticated and
-        #current_user.id == profile_user.id
-    #)
-    
     return render_template('profile.html', profile_user=profile_user)
+
+# Edit Profile
+
+@app.route('/profile/<username>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_profile(username):
+    if current_user.username != username:
+        flash("You can only edit your own profile")
+        return redirect(url_for('index'))
+    
+    form = forms.EditProfileForm()
+
+    if form.validate_on_submit():
+        current_user.bio = form.new_bio.data
+        db.session.commit()
+        flash('Profile updated!')
+        return redirect(url_for('profile', username=current_user.username))
+
+    return render_template('edit_profile.html', title='Edit_Profile', form=form)
 
 #Logout
 @app.route('/logout', methods=['GET'])
