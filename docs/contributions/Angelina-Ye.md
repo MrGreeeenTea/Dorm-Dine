@@ -43,14 +43,15 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 | \# | My contribution | Why I am proud of it | Which challenge I overcame |
 | :-- | :-- | :-- | :-- |
-| 1 | [Describe your individual contribution] |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
+| 1 | Data model & ERD  | 	I designed the full database schema including the ERD, split across multiple model files. I carefully thought through which tables, attributes and relationships were needed | Deciding on the right tables and attributes, modeling Many-to-Many relationships (tags, languages), translating the ERD into SQLAlchemy models, and iteratively improving the schema |
+| 2 | SQLAlchemy models | I implemented all models in Python with SQLAlchemy, split across multiple model files | It was completely new to me but I enjoyed learning it and understanding the logic behind it |
+| 3 | UI Screen Scribbles | I created hand-drawn sketches of the UI at the beginning of the project to visualize how the app could look and which pages are important | Thinking ahead about the user flow and deciding which pages the app needs before any code was written |
 
 ## Design Decisions that I led
 
-1. [DD #00](../design-decisions/dd-00.md)
-2. [DD #01](../design-decisions/dd-01.md)
+1. [DD #01](../design-decisions/dd-01.md)
+2. [DD #05](../design-decisions/dd-05.md)
+3. [DD #06](../design-decisions/dd-06.md)
 
 ---
 
@@ -58,12 +59,15 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 | Contribution | Proof, e.g., git commits | Sources used |
 | :-- | :-- | :-- |
-| [Design Challenge research] | [Research traces](../product-discovery/01-design-challenge.md#raw-materia) | See left |
-| [Refactor to use Flask Blueprints] | [Commit 1](https://github.com/hwrberlin/fswd/commit/d816e4), [Commit 2](https://github.com/hwrberlin/fswd/commit/75a6c1) | [Flask Documentation](https://flask.palletsprojects.com/en/stable/blueprints/#the-concept-of-blueprints) |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-
+| Happy Path | [Commit 1]() | See left |
+| Merging for the first submission the final codes of our teammates together | [Commit 2](https://github.com/MrGreeeenTea/Dorm-Dine/commit/9a94d85aba3c6c3d3b5afa4c2d147ef13e2ab9c2) [Commit 3](https://github.com/MrGreeeenTea/Dorm-Dine/commit/d6f3c6478c2d70cd574854053159dcb9cd505a7b) , [Commit 4](https://github.com/MrGreeeenTea/Dorm-Dine/commit/021962e841d19e7a8ccbac0d26eb96b515e08bf1) | See left |
+| Product Discovery (Target Users + Problem) | [Commit 5](https://github.com/MrGreeeenTea/Dorm-Dine/commit/367fc674d1ce1a4e473fdfb0831e1c4189beac2a) | See left |
+| create_tables.sql, drop_tables.sql, insert_sample.sql | [Commit 6](https://github.com/MrGreeeenTea/Dorm-Dine/commit/f97e99f48d282a07918f5b3ac3fcff7abb0ca402#diff-c0ce85936a7b5c42fc20d8a0e5a0ed154be5b87d7870afd0748a992a844e6b70) , [Commit 7](https://github.com/MrGreeeenTea/Dorm-Dine/commit/b2ecf17abc5523a2fc4200b1f255b18d685b3782#diff-c0ce85936a7b5c42fc20d8a0e5a0ed154be5b87d7870afd0748a992a844e6b70) | [KI-Prompt 8](https://claude.ai/share/e551809d-e603-410f-a1b7-008e4d974605) , [GeeksforGeeks](https://www.geeksforgeeks.org/sql/sql-tutorial/) |
+| /models | [Commit 9](https://github.com/MrGreeeenTea/Dorm-Dine/commit/0f6fcc2dc20c7c5798673ca00d5122b44b99eec3) , [Commit 10](https://github.com/MrGreeeenTea/Dorm-Dine/commit/8a3f1452271dd8070cd384585f874fc17920d19f)| [Mr. Eck's tutorials and material](https://hwrberlin.github.io/fswd/sqlalchemy.html) |
+| app.py | [Commit 11](https://github.com/MrGreeeenTea/Dorm-Dine/commit/0d399c25a5bdb77df28d6a586bd0f14734f985e9#diff-568470d013cd12e4f388206520da39ab9a4e4c3c6b95846cbc281abc1ba3c959) | [Mr. Eck's tutorials and material](https://hwrberlin.github.io/fswd/flask.html) , [MDN](https://developer.mozilla.org/de/docs/Web/HTTP/Reference/Status/200)|
+| db.py | [Commit 12](https://github.com/MrGreeeenTea/Dorm-Dine/commit/0d399c25a5bdb77df28d6a586bd0f14734f985e9#diff-e38886c9c347274d45df17345018e0c7415786cb04a398d881a41bc5ec8d651b) | [Mr. Eck's Code](https://github.com/hwrberlin/fswd-app/blob/main/db.py) |
+| README.md | [Commit 13]() | See left |
+| Data Model | [Commit 14]() | [freecodecamp](https://www.freecodecamp.org/news/crows-foot-notation-relationship-symbols-and-how-to-read-diagrams/) |
 ---
 
 ## AI Directory
@@ -72,6 +76,6 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 | #   | AI Tool | Purpose of Use | Affected Sections (Code + Docs) | Remarks, Procedure, Prompts |
 | :-- | :--     | :--            | :--                             | :--                         |
-| 01  |         |                |                                 |                             |
-| 02  |         |                |                                 |                             |
-| ... |         |                |                                 |                             |
+| 01  |    Claude     |        Commit on the wrong branch and how to undo it, used for debugging    |                  From FS_Test to main -> Design Decision 01, 05 & 06               |    [KI-Prompt 1]( https://claude.ai/share/58d2edfd-98d8-49ce-ae47-77e777f5c24f )             |
+| 02  |     Claude    |       improving my data base scheme and if the name of the tabel should be singular is the better option         |                create_tables.sql, drop_tables.sql                 |              [KI-Prompt 2](https://claude.ai/share/e551809d-e603-410f-a1b7-008e4d974605)               |
+| 03 |   Claude      |     asking questions about something I didn't understand           |                   /models              |               [KI-Prompt 3](https://claude.ai/share/88a4cde1-f7f2-4785-9a65-eb65e75bebb8)              |
