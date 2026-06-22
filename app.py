@@ -5,7 +5,7 @@ from datetime import datetime
 #for userauth
 import forms
 from forms import *
-from flask_login import LoginManager, login_user, logout_user, login_required, current_user #https://flask-login.readthedocs.io/en/latest/
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user #Flask-Login
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import select
 
@@ -26,14 +26,15 @@ bootstrap = Bootstrap5(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dormanddine.db"
 db.init_app(app)
 
+
 login_manager = LoginManager() 
 login_manager.init_app(app)
 login_manager.login_view = "login"
 login_manager.login_message = "Please log in to access this page."
 
-@login_manager.user_loader #für profiles später Login
-def load_user(id): #Erklärt die DB für LoginManaager
-    return db.session.get(User, id) #SQL Alchemy fswd
+@login_manager.user_loader #callback to reload the user object from the user ID stored in the session; Source: Flask-Login
+def load_user(id):
+    return db.session.get(User, id) #FSWD: SQL Alchemy 
 
 with app.app_context():
     db.create_all()
@@ -130,10 +131,10 @@ def post_meal():
 def profile(username):
     profile_user = db.session.execute(
             select(User).filter_by(username=username)  
-        ).scalar_one_or_none()
+        ).scalar_one_or_none() #return one user object or none Source: SQL Alchemy
     
-    if not profile_user:
-        print("existiert nicht")
+    if not profile_user: #if none
+        flash("Username doesn't exist")
         return render_template('404.html'), 404
     
     return render_template('profile.html', profile_user=profile_user)
@@ -143,14 +144,32 @@ def profile(username):
 @app.route('/profile/<username>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_profile(username):
-    if current_user.username != username:
+    if current_user.username != username: #checks that you can only edit your own profile
         flash("You can only edit your own profile")
         return redirect(url_for('index'))
     
     form = forms.EditProfileForm()
 
     if form.validate_on_submit():
-        current_user.bio = form.new_bio.data
+
+        #wird nur aktualisiert, wenn etwas eingegeben wurde; AI Prompt 1 Julia
+        if form.new_bio.data: 
+            current_user.bio = form.new_bio.data
+
+        if form.new_phonenumber.data: #prüft ob Telefonnummer bereits genutzt wird
+            existing_user = db.session.execute(
+                select(User).filter_by(phone_number=form.new_phonenumber.data)  
+            ).scalar_one_or_none()
+            if existing_user: 
+                flash('Phone Number is already in use')
+                return render_template('edit_profile.html', title='Edit_Profile', form=form)
+            else:
+                current_user.phone_number = form.new_phonenumber.data
+
+        if form.new_dorm_id.data != 0: #SelectField wählt immer automatisch das erste Feld aus, auch wenn keine Entscheidung getroffen wurde, deswegen dem ersten Field Wert Null gegeben; AI Prompt 2 Julia
+            current_user.dorm_id = form.new_dorm_id.data
+
+
         db.session.commit()
         flash('Profile updated!')
         return redirect(url_for('profile', username=current_user.username))
@@ -162,7 +181,6 @@ def edit_profile(username):
 @login_required
 def logout():
     logout_user()   #Flask Login
-    print("ausgeloggt")
     flash('You are logged out')
     return redirect(url_for('index'))
 
@@ -176,19 +194,16 @@ def login():
 
     form = forms.LoginForm()
 
-    if form.validate_on_submit(): #prüft ob POST und ob alle daten valid sind, Flask WTF
+    if form.validate_on_submit(): #prüft ob POST-Request und ob alle Daten gültig sind, Source: Flask-WTF
         user = db.session.execute(
             select(User).filter_by(email=form.email.data)  
-        ).scalar_one_or_none()  #SQL Alchemy fswd 
+        ).scalar_one_or_none()  #Source: SQL Alchemy 
         if not user: #wenn user none ist
-            print("Noch nicht registriert")
             flash('This E-Mail is not registered yet')
         elif not user.check_password(form.password.data):
-            print("password falsch")
             flash('The password is wrong')
         else: 
             login_user(user)
-            print("Erfolgreich")
             flash('You were successfully logged in')
             return redirect(url_for('feed'))
 
@@ -199,7 +214,7 @@ def login():
 @app.route('/register' , methods=['GET', 'POST'])
 def register():
 
-    if current_user.is_authenticated:
+    if current_user.is_authenticated: #Source: Login-Manager
         return redirect(url_for('feed'))
 
     form = forms.RegisterForm()
@@ -207,23 +222,23 @@ def register():
     if form.validate_on_submit(): 
         user = db.session.execute(
             select(User).filter_by(email=form.email.data)
-        ).scalars().first()
+        ).scalar_one_or_none()
         if user:
-            print('E-Mail bereits registriert!')
+            flash('E-Mail is already registered!')
             return render_template('register.html', title='Registrieren', form=form)
         
         user = db.session.execute(
             select(User).filter_by(username=form.username.data)
-        ).scalars().first()
+        ).scalar_one_or_none()
         if user:
-            print('Username existiert bereits!')
+            flash('Username already exists!')
             return render_template('register.html', title='Registrieren', form=form)
         
         user = db.session.execute(
            select(User).filter_by(phone_number=form.phonenumber.data)
-        ).scalars().first()
+        ).scalar_one_or_none()
         if user:
-            print('Username existiert bereits!')
+            print('Phone Number is already registered!')
             return render_template('register.html', title='Registrieren', form=form)
 
 
@@ -242,7 +257,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        print("erfolgreich registriert")
+        flash('Successfully signed up!')
         return redirect(url_for('feed'))
 
     return render_template('register.html', title='Registrieren', form=form)
