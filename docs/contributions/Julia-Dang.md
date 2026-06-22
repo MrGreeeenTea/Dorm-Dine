@@ -43,14 +43,14 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 | \# | My contribution | Why I am proud of it | Which challenge I overcame |
 | :-- | :-- | :-- | :-- |
-| 1 | [Describe your individual contribution] |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
+| 1 | Register | I learned various aspects of working in Full Stack Web Development. I built the form using Flask-WTF using validators, integrated it in the corresponding route. I learned about password hashing and integrated the database logic to create new users | I learned how to work step for step, at the beginning becoming familiar with Flask-WTF and the routing. Once it worked I started to implement the password hashing and database connection, that upon successful registration new user object instances would be added to the database. Even though everything didn't work out at first. After trying I was able to code a fully functional Register page |
+| 2 | Login | I built the login form with Flask-WTF, implemented a authentication logic using Flask-Login Manager|  |
+| 3 | Profile Editing | I built the update profile form with Flask-WTF. I made sure with @login_required and current_user that only the currently authenticated user can edit their own profile | I identified a problem in my edit profile form: If one field in the form would be left empty by the user because no changes in that attribute should be made, an empty input would had overwritten the existing data in the database. I fixed this by working with if-clauses |
 
 ## Design Decisions that I led
 
 1. [DD #00](../design-decisions/dd-00.md)
-2. [DD #01](../design-decisions/dd-01.md)
+2. [DD #08](../design-decisions/dd-07.md)
 
 ---
 
@@ -58,10 +58,10 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 | Contribution | Proof, e.g., git commits | Sources used |
 | :-- | :-- | :-- |
-| [Design Challenge research] | [Research traces](../product-discovery/01-design-challenge.md#raw-materia) | See left |
-| [Refactor to use Flask Blueprints] | [Commit 1](https://github.com/hwrberlin/fswd/commit/d816e4), [Commit 2](https://github.com/hwrberlin/fswd/commit/75a6c1) | [Flask Documentation](https://flask.palletsprojects.com/en/stable/blueprints/#the-concept-of-blueprints) |
-|  |  |  |
-|  |  |  |
+| Create Forms for Registration and Login with Validators on their corresponding route | [Commit 1](https://github.com/MrGreeeenTea/Dorm-Dine/commit/a77ad04fbcb672c9878eb1e54a6019f3199c2b27) | [Flask Mega Tutorial:Web Forms](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms), [Flask-WTF](https://flask-wtf.readthedocs.io/en/1.2.x/quickstart/#validating-forms), [FSWD: User Interfaces](https://hwrberlin.github.io/fswd/user-interfaces.html#22-wtforms-fields-and-validators) and [FSWD: Flask Routing](https://hwrberlin.github.io/fswd/flask.html) |
+| Added Password Hashing, Login Manager, Connected the Forms to the Database, Integrate Form into Bootstrap | [Commit 2](https://github.com/MrGreeeenTea/Dorm-Dine/commit/47569b45029c56a413737733ab913fb7e4b5c38c) | [Flask Mega Tutorial: UserLogin](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins), [Flask-Login](https://flask-login.readthedocs.io/en/latest/), [FSWD: SQL Alchemy](https://hwrberlin.github.io/fswd/sqlalchemy.html), [SQL-Alchemy](https://docs.sqlalchemy.org/en/14/core/connections.html#basic-usage) and [FSWD: User Interfaces](https://hwrberlin.github.io/fswd/user-interfaces.html#22-wtforms-fields-and-validators) |
+| Logout and Stop showing Login/Registration Page when logged in | [Commit 3](https://github.com/MrGreeeenTea/Dorm-Dine/commit/77aa0b8de6b5b852d1c7b376ae5e998fe4d6aefd) |[Flask-Login](https://flask-login.readthedocs.io/en/latest/) |
+| Added Profile Pages, form to edit your own profile with login required | [Commit 4](https://github.com/MrGreeeenTea/Dorm-Dine/commit/474288f1b996c01b2cc617b63314eada9385f5a2) | [Flask Mega Tutorial: Profile Pages](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vi-profile-page-and-avatars) |
 |  |  |  |
 
 ---
