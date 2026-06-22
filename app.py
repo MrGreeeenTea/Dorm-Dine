@@ -9,6 +9,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import select
 
+
 app = Flask(__name__)
 
 
@@ -243,6 +244,12 @@ def register():
         return redirect(url_for('feed'))
 
     return render_template('register.html', title='Registrieren', form=form)
+
+#JSON API 
+@app.route('/api/dorms')
+def api_dorms():
+    dorms = db.session.execute(db.select(Dorm)).scalars().all()
+    return jsonify([{"id": d.id,"name": d.name, "adress": d.adress,"district": d.district, "postcode": d.postcode,"place": d.place} for d in dorms])
 
 
 @app.route('/insert/sample')
