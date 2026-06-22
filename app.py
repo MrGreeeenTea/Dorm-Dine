@@ -29,6 +29,8 @@ db.init_app(app)
 
 login_manager = LoginManager() 
 login_manager.init_app(app)
+login_manager.login_view = "login"
+login_manager.login_message = "Please log in to access this page."
 
 @login_manager.user_loader #für profiles später Login
 def load_user(id): #Erklärt die DB für LoginManaager
@@ -58,6 +60,7 @@ def get_dish(dish_id):
 
 # Übersicht der Menge und der Bestellung
 @app.route('/order_view/<int:dish_id>')
+@login_required
 def order_view(dish_id):
     dish = db.session.get(Dish, dish_id)
     return render_template('order_view.html', dish = dish)
