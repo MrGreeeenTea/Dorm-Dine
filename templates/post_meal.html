@@ -25,6 +25,18 @@
             {{ form.status() }}
         </p>
         <p>
+            {{ form.pickup_day.label }}<br>
+            {{ form.pickup_day(type="date") }}
+
+        </p>
+        <p>
+            {{ form.time_start.label }}<br>
+            {{ form.time_start(type="time") }}
+        </p>
+        <p>
+            {{ form.time_end.label }}<br>
+            {{ form.time_end(type="time") }}
+        </p>
             {{ form.ingredients.label }}<br>
             {{ form.ingredients(size=32, placeholder="e.g. Pasta, Cheese, Onions") }}
         </p>

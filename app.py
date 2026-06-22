@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, jsonify
 from flask_bootstrap import Bootstrap5
+from datetime import datetime
 
 #for userauth
 import forms
@@ -94,6 +95,10 @@ def post_meal():
     form = MealForm() #form object erstellen, html template frontend tool
    
     if form.validate_on_submit():
+        # combine day + start time to a single datetime object
+        start_datetime = datetime.combine(form.pickup_day.data, form.time_start.data)
+        # combine day + end time to a single datetime object
+        end_datetime = datetime.combine(form.pickup_day.data, form.time_end.data)
         # build Dish/ Meal using form data and database table format
         new_dish = Dish( #database model Dish, siehe models/dish.py
             cook_id = current_user.id,
@@ -102,7 +107,8 @@ def post_meal():
             price = form.price.data,
             total_portions = form.portions.data,
             left_portions = form.portions.data,
-            pickup_time = db.func.now(),  # Uses the DB clock, included bc we want to show the pickup time in the future, so that it appears in the feed
+            pickup_time = start_datetime,  
+            pickup_timeend = end_datetime,
             status = form.status.data,
             ingredients = form.ingredients.data
         )
