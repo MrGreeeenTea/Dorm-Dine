@@ -58,13 +58,13 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 | Contribution | Proof, e.g., git commits | Sources used | extra info |
 | :-- | :-- | :-- | :-- |
-| Flowchart | [final standing flowchart](005b073f95725904fa4bcf39b58e0a73d21e7ab9) | See left | there is multiple commits for the flowchart before that but this is the most recent one. the others where placed on wrong pages or are just upload commits. |
-| Dashboard.html | [current dashboard layout](ab2194c7c31ef4a9dd08d70d143e164937c7f0e3) | See left  | there is another commit for the first bootstrang heavy layout. |
-| post_meal.html | [current post_meal layout](ab2194c7c31ef4a9dd08d70d143e164937c7f0e3) | See left  |  |
-| db.py changes for my parts | [db.py added more samples for testing](6f33b445a82c352ca2076f7a1f787be97e195098) | See left  | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
+| Flowchart | [final standing flowchart](https://github.com/MrGreeeenTea/Dorm-Dine/commit/005b073f95725904fa4bcf39b58e0a73d21e7ab9) | See left | there is multiple commits for the flowchart before that but this is the most recent one. the others where placed on wrong pages or are just upload commits. |
+| Dashboard.html | [current dashboard layout](https://github.com/MrGreeeenTea/Dorm-Dine/commit/ab2194c7c31ef4a9dd08d70d143e164937c7f0e3) | See left  | there is another commit for the first bootstrang heavy layout. |
+| post_meal.html | [current post_meal layout]((https://github.com/MrGreeeenTea/Dorm-Dine/commit/ab2194c7c31ef4a9dd08d70d143e164937c7f0e3) | See left  |  |
+| db.py changes for my parts | [db.py added more samples for testing](https://github.com/MrGreeeenTea/Dorm-Dine/commit/6f33b445a82c352ca2076f7a1f787be97e195098) | See left  | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
 | app.py changes for my parts | [app.py changes to include functions for dashboard and post_meal that makes it no longer static](4aa8413ca2cf64ee4e9cffaaca7e7ebe72466c29) | See left  | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
-| forms.py changes for my parts | [forms.py changes for new class MealForm(FlaskForm)](d964087dae3040b36e0583f5a0505b95c81b4bf5) | See left | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
-| Product Discovery | [design challenges](91ec1537c1909c15984e8098f4ccc2138fd4dc75) ; [target user + problems](9c54422d49f5edbe0ad6b2805c89570252bae827) ; [solution elements](fa71608bd8db2ddea379491e01149997cba8a867) ; [tests](fb33305e4c2fd5043e6cce29a2ba062613c6c3e3) | See left |  |
+| forms.py changes for my parts | [forms.py changes for new class MealForm(FlaskForm)](https://github.com/MrGreeeenTea/Dorm-Dine/commit/d964087dae3040b36e0583f5a0505b95c81b4bf5) | See left | this incldues some stuff i commited from what Julia created (eg. register, login and more) because I had used her branch to build my stuff on top |
+| Product Discovery | [design challenges](https://github.com/MrGreeeenTea/Dorm-Dine/commit/91ec1537c1909c15984e8098f4ccc2138fd4dc75) ; [target user + problems](https://github.com/MrGreeeenTea/Dorm-Dine/commit/9c54422d49f5edbe0ad6b2805c89570252bae827) ; [solution elements](https://github.com/MrGreeeenTea/Dorm-Dine/commit/fa71608bd8db2ddea379491e01149997cba8a867) ; [tests](https://github.com/MrGreeeenTea/Dorm-Dine/commit/fb33305e4c2fd5043e6cce29a2ba062613c6c3e3) | See left |  |
 
 ---
 
