@@ -13,3 +13,6 @@ nav_order: 1
 {: toc }
 {: .text-delta }
 </details>
+
+# ERD Martin Notation 
+![ERD](assets/images/Dorm&Dine_Data_Model.jpg)
