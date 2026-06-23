@@ -91,7 +91,8 @@ def complete_order(dish_id, payment_method):
     dish.left_portions = dish.left_portions - portions
     db.session.commit()
 
-    return render_template( 'payment_success.html', dish = dish, portions = portions, payment_method = payment_method)
+    return render_template( 'payment_success.html', cook_name=f"{dish.cook.first_name} {dish.cook.last_name}", cook_telephone=dish.cook.phone_number, dish = dish, portions = portions, payment_method = payment_method, 
+                           pickup_date=dish.pickup_time.strftime("%Y-%m-%d"), pickup_time=dish.pickup_time.strftime("%H:%M"), pickup_timeend=dish.pickup_timeend.strftime("%H:%M"), pickup_location=dish.cook.dorm.name)
 
 
 # post meals
