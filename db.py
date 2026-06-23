@@ -28,9 +28,10 @@ def insert_sample():
 
     user1 = User(email='max.mustermann@example.com', password_hash=generate_password_hash('Password_123'), username='max123', first_name='Max', last_name='Mustermann', bio='Hey, my name is Max and I study Business Information Systems!', is_cook=True, phone_number='+49123456789')
     user1.dorm = dorm1
-
-    user2 = User(email='jenny@example.com', password_hash=generate_password_hash('Password_123'), username='jenny123', first_name='Jenny', last_name='Müller', bio='Hi, I am Jenny, studying Computer Science.', is_cook=False, phone_number='+49987654321')
+    user2 = User(email='lisa.meier@example.com', password_hash=generate_password_hash('Password_112'), username='lisa112', first_name='Lisa', last_name='Meier', bio='Hey, my name is Lisa and I study Computer Science!', is_cook=False, phone_number='+49123456788')
     user2.dorm = dorm2
+    user3 = User(email='anna.schmidt@example.com', password_hash=generate_password_hash('Password_113'), username='anna113', first_name='Anna', last_name='Schmidt', bio='Hey, my name is Anna and I study Psychology!', is_cook=True, phone_number='+49123456787')
+    user3.dorm = dorm3
 
     tag1 = Tag(name='Italian')
     tag2 = Tag(name='comfort food')
