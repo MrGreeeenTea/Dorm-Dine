@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block CONTENT %}
+    <h2>Offer a New Dish</h2>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(size=32) }}
+        </p>
+        <p>
+            {{ form.price.label }}<br>
+            {{ form.price(size=32, placeholder="e.g. 2.00") }}
+        </p>
+        <p>
+            {{ form.portions.label }}<br>
+            {{ form.portions(size=32) }}
+        </p>
+        <p>
+            {{ form.status.label }}<br>
+            {{ form.status() }}
+        </p>
+        <p>
+            {{ form.pickup_day.label }}<br>
+            {{ form.pickup_day(type="date") }}
+
+        </p>
+        <p>
+            {{ form.time_start.label }}<br>
+            {{ form.time_start(type="time") }}
+        </p>
+        <p>
+            {{ form.time_end.label }}<br>
+            {{ form.time_end(type="time") }}
+        </p>
+            {{ form.ingredients.label }}<br>
+            {{ form.ingredients(size=32, placeholder="e.g. Pasta, Cheese, Onions") }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

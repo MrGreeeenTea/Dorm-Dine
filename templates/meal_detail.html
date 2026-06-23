@@ -1,0 +1,42 @@
+{%extends "base.html" %}
+{% block  CONTENT%}
+<div class = "container mt-4">
+
+<h1 class = "mb-4">Meals Details</h1>
+
+<div class = "card mb-3">
+<div class = "card-body">
+    <h4 class = "card-title">{{ dish.name }}</h4>
+
+    <p><strong>Portions available:</strong>
+        {{ dish.left_portions }} 
+    </p>
+    <p><strong>Pickup time:</strong>
+        {% if dish.pickup_time and dish.pickup_timeend %}
+        {{ dish.pickup_time.strftime('%d.%m.%Y') }},
+        {{ dish.pickup_time.strftime('%H:%M') }} -
+        {{ dish.pickup_timeend.strftime('%H:%M') }}
+        {% else %}
+            No pickup time set
+        {% endif %}
+     </p>
+    <p><strong>Price:</strong>
+        {{ "%.2f"|format(dish.price) }} €
+    </p>
+    <p><strong>Description:</strong>
+        {{ dish.description }} 
+    </p>
+    <p><strong>Status:</strong>
+        {{ dish.status }} 
+    </p>
+    <a href = "{{ url_for('order_view', dish_id = dish.id )}}" class = "btn btn-primary">
+        Order Meal
+    </a>
+    <a href = "{{ url_for('feed') }}" class = "btn btn-secondary">
+        Back to Meals
+    </a>
+</div>
+</div>
+</div>
+
+{% endblock  %}

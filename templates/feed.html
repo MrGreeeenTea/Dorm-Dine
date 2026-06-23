@@ -1,21 +1,61 @@
-{% extends 'base.html' %}
-
-{% block TITLE %}Feed{% endblock %}
+{% extends "base.html" %}
 
 {% block CONTENT %}
-<h2>Verfügbare Gerichte</h2>
+
+<div class = "container mt-4">
+<h1 class = "mb-4">Available Meals</h1>
 
 {% if dishes %}
+    <div class = "row">
     {% for dish in dishes %}
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">{{ dish.name }}</h5>
-                <p class="card-text">{{ dish.description }}</p>
-                <p><strong>Preis:</strong> {{ dish.price }}€ &nbsp; <strong>Portionen:</strong> {{ dish.left_portions }}</p>
-            </div>
-        </div>
+
+        <div class = "card mb-3">
+        <div class = "card-body">
+            <h4 class = "card-title">{{dish.name}} </h4>
+
+        <p>{{dish.description}}</p>
+
+        <p><strong>Cook:</strong>
+            <a href="{{ url_for('profile', username=dish.cook.username) }}">
+                {{ dish.cook.first_name }}
+            </a>
+        </p>
+
+        <p><strong>Dorm:</strong>
+        {{ dish.cook.dorm.name }}
+        </p>
+
+        <p><strong>Pickup time:</strong>
+            {% if dish.pickup_time and dish.pickup_timeend %}
+            {{ dish.pickup_time.strftime('%d.%m.%Y') }},
+            {{ dish.pickup_time.strftime('%H:%M') }} -
+            {{ dish.pickup_timeend.strftime('%H:%M') }}
+            {% else %}
+                No pickup time set
+            {% endif %}
+        </p>
+
+        <p><strong>Price:</strong>
+        {{ "%.2f"|format(dish.price)}}
+        </p>
+
+
+        <p><strong>Portions left:</strong>
+        {{ dish.left_portions }}
+        </p>
+
+        <a href = "{{ url_for('get_dish', dish_id = dish.id )}}" class="btn btn-primary">
+        View Details
+        </a>
+
+    </div>
+    </div>
     {% endfor %}
-{% else %}
-    <p>Noch keine Gerichte vorhanden.</p>
+    </div>
+    {% else %}
+
+        <div class = "alert alert-info"> No meals available at the moment</div>
+
 {% endif %}
+</div>
 {% endblock %}

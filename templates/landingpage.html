@@ -1,0 +1,22 @@
+{% extends "base.html"%}
+
+{% block CONTENT %}
+
+<div class = "container d-flex flex-column align-items-center justify-content-center text-center" style = "min-height: 80vh;">
+
+    <!-- Logo  -->
+    <div class = "mb-4">
+    
+        <img src = "{{ url_for('static', filename='images/logo.png') }}"
+        alt = "Dorm & Dine Logo"
+        style = "width: 220px;">
+    
+    </div>
+
+    <p class = "lead mb-4" style = "max-width: 600px;">
+        Dorm & Dine helps student who live in dorms to share quality homemade meals, reducing food waste and providing an affordable food alternative.
+    </p>
+
+</div>
+
+{% endblock %}

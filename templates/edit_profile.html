@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block TITLE %}Login{% endblock %}
+
+{% block CONTENT %}
+    <h2>Edit Profile</h2>
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+         <p>
+            {{ form.new_bio.label }}<br>
+            {{ form.new_bio(size=32) }}
+        </p>
+        <p>
+            {{ form.new_phonenumber.label }}<br>
+            {{ form.new_phonenumber(size=32) }}
+        </p>
+        <p>
+            {{ form.new_dorm_id.label }}<br>
+            {{ form.new_dorm_id }}
+        </p>
+        <p>{{ form.update() }}</p>
+
+         </form>
+
+{% endblock %}

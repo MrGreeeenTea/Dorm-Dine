@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block TITLE %}Dorm-Dine | Dashboard{% endblock %}
+
+{% block CONTENT %}
+
+<style>
+.dashboard-button {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid black;
+    text-decoration: none;
+}
+</style>
+
+<h2>My Dashboard</h2>
+
+<form method="POST" action="{{ url_for('dashboard') }}">
+    <p>
+        <label for="dorm_id">Filter for current dorm:</label><br>
+
+        <select id="dorm_id" name="dorm_id">
+            {% for dorm in dorm_list %}
+            <option value="{{ dorm.id }}"
+                {% if selected_dorm_id == dorm.id %}selected{% endif %}>
+                {{ dorm.name }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Save</button>
+    </p>
+</form>
+
+<hr>
+
+<h3>🛒 My Orders</h3>
+
+{% if my_orders %}
+    {% for order in my_orders %}
+        <p>
+            <strong>
+                <a href="{{ url_for('get_dish', dish_id=order.dish_id) }}"></a>
+                    {{ order.dish_name }}
+                </a>
+            </strong><br>
+
+            Status: {{ order.status }}<br>
+            Portions: {{ order.portions }}<br>
+            Total Price: €{{ order.price * order.portions }}
+
+            <p><strong>Pickup:</strong>
+                {% if order.pickup_time and order.pickup_timeend %}
+                {{ order.pickup_date }},
+                {{ order.pickup_time }} - {{ order.pickup_timeend }}
+            {% else %}
+                No pickup time set
+            {% endif %}
+            </p>
+
+<p><strong>Location:</strong>
+    {{ order.pickup_location }}
+</p>
+        </p>
+
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>You currently have no active orders.</p>
+{% endif %}
+
+<hr>
+
+{% if current_user.is_cook %}
+
+    <h3>🍳 My Dishes</h3>
+
+    {% if my_meals %}
+        <ul>
+            {% for dish in my_meals %}
+                <li>
+                    <strong>{{ dish.name }}</strong><br>
+                    Portions: {{ dish.total_portions }}<br>
+                    Remaining Portions: {{ dish.left_portions }}<br>
+                    Status: {{ dish.status }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not listed any dishes yet.</p>
+    {% endif %}
+
+<p>
+    <a href="{{ url_for('post_meal') }}" class="dashboard-button">
+        Create New Dish
+    </a>
+</p>
+
+{% endif %}
+
+<hr>
+
+<h3>🍽️ Current Offers in choosen Dorm </h3>
+
+{% if current_offers %}
+    {% for offer in current_offers %}
+
+        <h4>
+            <a href="{{ url_for('get_dish', dish_id=offer.id) }}">
+                {{ offer.name }}
+            </a>
+        </h4>
+
+        <p>Price: €{{ offer.price }}</p>
+
+        <p>{{ offer.description }}</p>
+
+        <p>
+            Available Portions:
+            {{ offer.left_portions }}
+        </p>
+
+        <a href="{{ url_for('profile', username=offer.cook_username) }}">
+                Koch: {{ offer.cook }}
+            </a>
+<p>
+    <a href="{{ url_for('order_view', dish_id=offer.id) }}" class="dashboard-button">
+        Order Now
+    </a>
+</p>
+
+        <hr>
+
+    {% endfor %}
+{% else %}
+    <p>No dishes available for this dorm at the moment.</p>
+{% endif %}
+
+{% endblock %}

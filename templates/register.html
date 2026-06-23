@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block TITLE %}Registration{% endblock %}
+
+
+{% block CONTENT %}
+    <h2>Dorm & Dine Registration</h2>
+
+    <!-- Source: AI Prompt 3 Julia -->
+    <p>Disclaimer: By using Dorm&Dine uploading or purchasing meals on this platform, users confirm with signing up that their listings and transactions are lawful and accurate, accept full responsibility for food quality, safety, allergens, pricing, and delivery, and acknowledge that the platform only facilitates the exchange and is not liable for user-generated content, meal condition, or disputes between buyers and sellers.</p>
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.first_name.label }}<br>
+            {{ form.first_name(size=32) }}
+        </p>
+        <p>
+            {{ form.last_name.label }}<br>
+            {{ form.last_name(size=32) }}
+        </p>
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}
+        </p>
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>
+            {{ form.passwordagain.label }}<br>
+            {{ form.passwordagain(size=32) }}
+        </p>
+        <p>
+            {{ form.phonenumber.label }}<br>
+            {{ form.phonenumber(size=32) }}
+        </p>
+         <p>
+            {{ form.is_cook.label }}<br>
+            {{ form.is_cook(size=32) }}
+        </p>
+        <p>
+            {{ form.dorm_id.label }}<br>
+            {{ form.dorm_id }}
+        </p>
+         <p>
+            {{ form.bio.label }}<br>
+            {{ form.bio(size=32) }}
+        </p>
+        <p>{{ form.register() }}</p>
+
+         </form>
+{% endblock %}

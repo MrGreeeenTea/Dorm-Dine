@@ -1,0 +1,52 @@
+{% extends "base.html"%}
+
+{% block CONTENT %}
+
+<div class = "container mt-4">
+
+<h1 class = "mb-4">Order Meal</h1>
+
+<div class = "card mb-3">
+    <div class = "card-body">
+    <h4 class = "card-title">{{ dish.name }}</h4>
+    <p><strong>Portions available:</strong>
+        {{ dish.left_portions }} 
+    </p>
+    <p><strong>Price:</strong>
+        {{ "%.2f"|format(dish.price) }} €
+    </p>
+    <p><strong>Description:</strong>
+        {{ dish.description }} 
+    </p>
+
+    {% if error %}
+
+        <div class = "alert alert-danger">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+    <form method = "POST">
+        <div class= "mb-3">
+            <label class ="form-label">Portions</label>
+            <input type = "number" class = "form-control" name = "portions" value = "1" min= "1" max = "{{ dish.left_portions}}">
+        </div>
+
+        <button type = "submit" formaction = "{{ url_for('payment_success_cash', dish_id = dish.id)}}" class = "btn btn-secondary">
+        Pay Cash
+        </button>
+
+        <button type = "submit" formaction = "{{ url_for('payment_success_paypal', dish_id = dish.id)}}" class = "btn btn-primary">
+        Pay PayPal
+        </button>
+
+    </form>
+    </div>
+</div>
+
+<a href = "{{ url_for('feed')}}" class="btn btn-outline-secondary">
+            Back to meals
+        </a>
+</div>
+{% endblock %}

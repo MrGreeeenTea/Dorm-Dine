@@ -8,7 +8,7 @@ class DishOrder(db.Model):
     dish_id = db.Column(db.Integer, db.ForeignKey("dish.id"), nullable=False)
     portions = db.Column(db.Integer, nullable=False, default=1)
     message = db.Column(db.String, nullable=True)
-    status = db.Column(db.String, nullable=False, default="pending")
+    status = db.Column(db.Enum('pending', 'confirmed', 'ready', 'picked_up', 'cancelled', name='order_status'), nullable=False, default="pending")
     created_at = db.Column(db.DateTime, default=datetime.today)
     updated_at = db.Column(db.DateTime, default=datetime.today)
 

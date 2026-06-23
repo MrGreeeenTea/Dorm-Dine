@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block CONTENT %}
+
+<div class = "container mt-4">
+
+    <div class = "alert alert-success">
+
+        <h4>Order confirmed!</h4>
+        <p> Your ordered 
+            <strong>{{ portions }}</strong>    
+            portion(s) of
+            <strong>{{ dish.name }}</strong>
+        </p>
+
+        <p> Cook:
+            <strong>{{ cook_name }} </strong>
+        </p>
+        <p> Cook's phone number:
+            <strong>{{ cook_telephone }} </strong>
+        </p>
+        
+        <p> Pickup time:
+            <strong>{{ pickup_date }} at {{ pickup_time }} - {{ pickup_timeend }}</strong>
+        </p>
+
+        <p> Pickup location:
+            <strong>{{ pickup_location }}</strong>
+        </p>
+
+        <p> Payment method:
+            <strong>{{ payment_method }}</strong>
+        </p>
+
+        <p> Remaining portions::
+            <strong>{{ dish.left_portions }}</strong>
+        </p>
+
+    </div>
+    <a href= "/feed" class = "btn btn-primary">
+        Back to Meals
+    </a>
+</div>
+
+{% endblock %}
