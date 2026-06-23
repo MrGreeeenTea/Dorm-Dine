@@ -61,13 +61,13 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 ## Contributions
 
-| Contribution | Proof, e.g., git commits | Sources used |
-| :-- | :-- | :-- |
-| [Design Challenge research] | [Research traces](../product-discovery/01-design-challenge.md#raw-materia) | See left |
-| [Refactor to use Flask Blueprints] | [Commit 1](https://github.com/hwrberlin/fswd/commit/d816e4), [Commit 2](https://github.com/hwrberlin/fswd/commit/75a6c1) | [Flask Documentation](https://flask.palletsprojects.com/en/stable/blueprints/#the-concept-of-blueprints) |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| Contribution | Proof, e.g., git commits | Sources used | Extra Info |
+| :-- | :-- | :-- | :-- |
+| Meal overview UI / feed page| Current feed.html layout showing available meals with dish name, description, cook, dorm, price, pickup time, available portions and order button | See left | This was one of my first UI tasks. I started with static meal cards and later changed the page so it displays real dish data from the database
+| Database-connected UI changes | Commits where feed.html, order_view.html and related app.py routes were changed from static placeholders to dynamic database-based content | See left | I mainly worked on the UI, but I also had to understand enough backend/database logic to display the correct information and update order-related data
+| UI debugging and improvements | Several smaller commits fixing layout, buttons, formatting, pickup time display and template errors | See left | A big part of my contribution was not only creating pages, but repeatedly fixing small UI and template problems until the screens worked properly
+|  |  |  |  |
+|  |  |  |  |
 
 ---
 
