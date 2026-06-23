@@ -62,12 +62,12 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 ## Contributions
 
 | Contribution | Proof, e.g., git commits | Sources used | Extra Info |
-| :-- | :-- | :-- |
+| :-- | :-- | :-- | :-- |
 | Meal overview UI / feed page| Current feed.html layout showing available meals with dish name, description, cook, dorm, price, pickup time, available portions and order button | See left | This was one of my first UI tasks. I started with static meal cards and later changed the page so it displays real dish data from the database.
 | Database-connected UI changes | Current order_view.html and related order flow in app.py | See left | This includes the order page, payment choice between cash and PayPal, confirmation messages and navigation back to the meal overview.
 | UI debugging and improvements | Several smaller commits fixing layout, buttons, formatting, pickup time display and template errors | See left | A big part of my contribution was not only creating pages, but repeatedly fixing small UI and template problems until the screens worked properly.
-|  |  |  |
-|  |  |  |
+|  |  |  |  |
+|  |  |  |  |
 
 ---
 
