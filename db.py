@@ -29,8 +29,8 @@ def insert_sample():
     user1 = User(email='max.mustermann@example.com', password_hash=generate_password_hash('Password_123'), username='max123', first_name='Max', last_name='Mustermann', bio='Hey, my name is Max and I study Business Information Systems!', is_cook=True, phone_number='+49123456789')
     user1.dorm = dorm1
 
-    dish1 = Dish(name='Lasagne', description='Traditional Italian pasta baked with rich meat sauce, layered with creamy béchamel and Gouda cheese.', price='2.00', total_portions=6, left_portions=6, pickup_time=db.func.now(), status='scheduled')
-    dish1.cook_id = 1
+    user2 = User(email='jenny@example.com', password_hash=generate_password_hash('Password_123'), username='jenny123', first_name='Jenny', last_name='Müller', bio='Hi, I am Jenny, studying Computer Science.', is_cook=False, phone_number='+49987654321')
+    user2.dorm = dorm2
 
     tag1 = Tag(name='Italian')
     tag2 = Tag(name='comfort food')
@@ -38,14 +38,12 @@ def insert_sample():
     lang1 = Language(name='German')
     lang2 = Language(name='English')
 
-    db.session.add_all([dorm1, dorm2, dorm3, user1, tag1, tag2, lang1, lang2])
+    db.session.add_all([dorm1, dorm2, dorm3, user1, user2, tag1, tag2, lang1, lang2])
     db.session.commit()
 
     from datetime import datetime
     dish1 = Dish(cook_id=user1.id, name='Lasagne',
-                 description='Traditional Italian pasta baked with rich meat sauce, layered with creamy bechamel and Gouda cheese.',
-                 price='2.00', total_portions=6, left_portions=6,
-                 pickup_time=datetime(2026, 6, 16, 17, 15), status='scheduled')
+                 description='Traditional Italian pasta baked with rich meat sauce, layered with creamy bechamel and Gouda cheese.', price='2.00', total_portions=6, left_portions=6,pickup_time=datetime(2026, 6, 30, 17, 15), pickup_timeend=datetime(2026, 6, 30, 18, 0), status='scheduled')
     db.session.add(dish1)
     db.session.commit()
 
