@@ -46,9 +46,11 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 | \# | My contribution | Why I am proud of it | Which challenge I overcame |
 | :-- | :-- | :-- | :-- |
-| 1 | Landing Page UI | Weil es schlicht geblieben ist | / |
+| 1 | Bestellvorgang UI | Der Prozess ist effektiv und schnell und ganz | Darauf aufbauend musste ich lernen Informationen innerhalb der Datenbank abzuändern |
 | 2 | Gerichtsübersicht UI | Es ist übersichtlich und schön gemacht | Hiermit habe ich angefangen und musste lernen der Datenbank Informationen zu entnehmen |
-| 3 | Bestellvorgang UI | Der Prozess ist effektiv und schnell | Darauf aufbauend musste ich lernen Informationen innerhalb der Datenbank abzuändern |
+| 3 | Landing Page UI | Weil es schlicht geblieben ist | / |
+
+
 
 ## Design Decisions that I led
 
