@@ -10,7 +10,24 @@ Dorm & Dine is a student-to-student food platform built for dormitory life. Inst
 
 ## Sample App Screen
 
+# Landing page
 
+![landing page](assets\images\landing_page.png)
+---
+
+# Feed
+
+![Feed](assets\images\feed.png)
+---
+
+# Dashbaord
+
+![Dashboard](assets\images\dashboard.png)
+---
+
+# Profil
+
+![Profil](assets\images\profil.png)
 ---
 
 ## Improvements / Refinements since First Submission
