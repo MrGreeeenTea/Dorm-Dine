@@ -252,7 +252,7 @@ def register():
 @app.route('/api/dorms')
 def api_dorms():
     dorms = db.session.execute(db.select(Dorm)).scalars().all()
-    return jsonify([{"id": d.id,"name": d.name, "adress": d.adress,"district": d.district, "postcode": d.postcode,"place": d.place} for d in dorms])
+    return jsonify([{"id": d.id,"name": d.name, "address": d.address,"district": d.district, "postcode": d.postcode,"place": d.place} for d in dorms])
 
 
 @app.route('/insert/sample')
@@ -283,7 +283,7 @@ def dashboard():
 
     # get dorm list from database
     dorms = db.session.execute(select(Dorm)).scalars().all()
-    dorm_list = [{"id": d.id, "name": d.name, "adress": d.adress} for d in dorms]
+    dorm_list = [{"id": d.id, "name": d.name, "address": d.address} for d in dorms]
 
     # get orders for current user
     orders = db.session.execute(

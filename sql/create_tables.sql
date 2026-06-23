@@ -1,7 +1,7 @@
 CREATE TABLE dorm (
     id INTEGER PRIMARY KEY, 
     name TEXT NOT NULL,
-    adress TEXT NOT NULL,
+    address TEXT NOT NULL,
     district TEXT NOT NULL,
     postcode TEXT NOT NULL,
     place TEXT NOT NULL
@@ -48,17 +48,14 @@ CREATE TABLE dish (
     icon_id INTEGER,
     name TEXT NOT NULL,
     description TEXT,
+    ingredients TEXT,
     price REAL NOT NULL,
     total_portions INTEGER NOT NULL,
+    left_portions INTEGER NOT NULL,
+    pickup_timeend TIMESTAMP NOT NULL,
     pickup_time TIMESTAMP NOT NULL, 
-       status TEXT NOT NULL CHECK (
-        status IN (
-            'scheduled',
-            'active',
-            'sold_out',
-            'cancelled',
-            'completed'
-        )
+    status TEXT NOT NULL CHECK (
+        status IN ('scheduled', 'active', 'sold_out','cancelled','completed')
     ),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (cook_id) REFERENCES user(id) ON DELETE CASCADE,
@@ -69,14 +66,12 @@ CREATE TABLE dish_photo (
     id INTEGER PRIMARY KEY,
     dish_id INTEGER NOT NULL,
     photo_url TEXT NOT NULL,
-    is_primary BOOLEAN DEFAULT FALSE,   -- Hauptbild für Feed-Anzeige
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE
 );
 
 CREATE TABLE tag (
     id INTEGER PRIMARY KEY,
-    name TEXT UNIQUE NOT NULL    -- z.B. 'vegetarisch', 'vegan'
+    name TEXT UNIQUE NOT NULL    -- z.B.'vegetarisch', 'vegan'
 );
 
 CREATE TABLE dish_tag (
@@ -94,16 +89,9 @@ CREATE TABLE dish_order (
     portions INTEGER NOT NULL DEFAULT 1,
     message TEXT,             
     status TEXT NOT NULL DEFAULT 'pending' CHECK(
-        status IN(
-            'pending',
-            'confirmed',
-            'ready',
-            'picked_up',
-            'cancelled'
-        )
+        status IN('pending', 'confirmed', 'ready', 'picked_up', 'cancelled')
     ),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (buyer_id) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (dish_id)  REFERENCES dish(id) ON DELETE CASCADE
 );
@@ -111,12 +99,12 @@ CREATE TABLE dish_order (
 -- Küchensauberkeitsnachweis (Foto + handgeschriebener Zeitstempel)
 CREATE TABLE kitchen_proof (
     id INTEGER PRIMARY KEY,
-    dish_id INTEGER NOT NULL,
+    dish_order_id INTEGER NOT NULL,
     cook_id INTEGER NOT NULL,
     photo_url TEXT NOT NULL,
     proof_type TEXT NOT NULL CHECK (proof_type IN ('before', 'after')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (dish_id) REFERENCES dish(id) ON DELETE CASCADE,
+    FOREIGN KEY (dish_order_id) REFERENCES dish_order(id) ON DELETE CASCADE,
     FOREIGN KEY (cook_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
@@ -124,29 +112,24 @@ CREATE TABLE message (
     id INTEGER PRIMARY KEY,
     sender_id INTEGER NOT NULL,
     receiver_id INTEGER NOT NULL,
-    order_id INTEGER,                    
+    dish_order_id INTEGER,                    
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sender_id) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (receiver_id) REFERENCES user(id) ON DELETE CASCADE,
-    FOREIGN KEY (order_id) REFERENCES dish_order(id) ON DELETE SET NULL
+    FOREIGN KEY (dish_order_id) REFERENCES dish_order(id) ON DELETE SET NULL
 );
 
 CREATE TABLE notification (
     id INTEGER PRIMARY KEY,
     user_id INTEGER NOT NULL,
-    order_id INTEGER,
+    dish_order_id INTEGER,
     types TEXT NOT NULL CHECK(
-        types IN(
-            'new_order',
-            'order_confirmed',
-            'dish_ready',
-            'order_cancelled'
-        )
+        types IN('new_order','order_confirmed','dish_ready','order_cancelled')
     ),
     message TEXT NOT NULL,
     is_read BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
-    FOREIGN KEY (order_id) REFERENCES dish_order(id) ON DELETE SET NULL
+    FOREIGN KEY (dish_order_id) REFERENCES dish_order(id) ON DELETE SET NULL
 );
