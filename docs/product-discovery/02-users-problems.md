@@ -10,7 +10,7 @@ nav_order: 2
 The tagret users have previously been introduced in the value proposition. 
 I have made small adjustments to them based on our recent discoveries.
 
-**Persona A — The Buyer**
+**Persona A — The student living in the dorm** 
 
 **Julia Meier, 21 years old, 3rd semester, Business Administration**
 
@@ -20,7 +20,7 @@ What Julia actually wants is simple: something warm, real, and cheap, without ha
 
 Dorm & Dine is exactly that for her. She opens the app, sees what’s available two floors up, taps reserve, and shows up at the right time. No account needed just to browse. No delivery fee. No guilt.
 
-**Persona B — The Cook**
+**Persona B — The hobby cook living in the same dorm**
 
 **Lars Müller, 23 years old, 5th semester, Computer Science**
 

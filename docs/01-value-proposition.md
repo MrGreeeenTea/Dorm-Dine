@@ -27,7 +27,7 @@ Dorm & Dine does not promise restaurant-quality logistics or a full marketplace 
 
 Dorm & Dine is built for two kinds of students who already live under the same roof. They have different problems, but the same solution fixes both.
 
-**Persona A — The Buyer** 
+**Persona A — The student living in the dorm** 
 
 Julia Meier, 21 years old, 3rd semester, Business Administration
 
@@ -39,7 +39,7 @@ What Julia actually wants is simple: something warm, real, and cheap, without ha
 Dorm & Dine is exactly that for her. She opens the app, sees what's available two floors up, taps reserve, and shows up at the right time. No account needed just to browse. No delivery fee. No guilt.
 
 
-**Persona B — The Cook**
+**Persona B — The hobby cook living in the same dorm**
 
 Lars Müller, 23 years old, 5th semester, Computer Science
 
@@ -53,7 +53,7 @@ With Dorm & Dine, Lars posts what he's cooking that evening, sets a price that c
 
 ##  Happy Path
 
-![Happy Path - Buyer and Cook](assets\images\Happy_Path_DD.png)
+![Happy Path - Dorm & Dine](assets\images\Happy_Path_DD.drawio.png)
 
 
 ---
