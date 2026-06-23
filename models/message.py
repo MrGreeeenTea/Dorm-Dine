@@ -4,7 +4,7 @@ class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sender_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     receiver_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    order_id = db.Column(db.Integer, db.ForeignKey("dish_order.id"), nullable=True)
+    dish_order_id = db.Column(db.Integer, db.ForeignKey("dish_order.id"), nullable=True)
     content = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.now())
 

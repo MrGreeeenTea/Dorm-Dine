@@ -9,8 +9,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String, unique=True, nullable=False)
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
-    profile_picture = db.Column(db.LargeBinary, nullable=True)
-    picture_mimetype = db.Column(db.String, nullable=True)  # z.B. "image/jpeg"
+    profile_picture = db.Column(db.String, nullable=True) # URL
     bio = db.Column(db.String, nullable=True)
     is_cook = db.Column(db.Boolean, default=False)
     dorm_id = db.Column(db.Integer, db.ForeignKey("dorm.id"), nullable=True) #db.Integer vllt redundant? 
@@ -22,6 +21,8 @@ class User(UserMixin, db.Model):
     sent_messages = db.relationship("Message", foreign_keys="Message.sender_id", back_populates="sender")
     received_messages = db.relationship("Message", foreign_keys="Message.receiver_id", back_populates="receiver")
     notifications = db.relationship("Notification", back_populates="user")
+    dishes = db.relationship("Dish", back_populates="cook")
+
 
 
     # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins

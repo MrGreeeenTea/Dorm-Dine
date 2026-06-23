@@ -19,7 +19,7 @@ class RegisterForm(FlaskForm):
     passwordagain = PasswordField('Repeat Password', validators=[InputRequired(), Length(min=8), EqualTo('password')]) 
     phonenumber = StringField('Phone Number', validators=[InputRequired(), Length(min=5)])
     is_cook = BooleanField('I am interested in Cooking for Dorm&Dine')
-    dorm_id = SelectField('Choose your dormitory', choices=[(1, 'Wohnheim Nollendorfstraße')], coerce=int, validators=[InputRequired()])
+    dorm_id = SelectField('Choose your dormitory', choices=[(1, 'Wohnheim Nollendorfstraße'),(2, 'Halbauer Weg 19-21'),(3, 'Franz-Mehring-Platz 2, 3')], coerce=int, validators=[InputRequired()])
     bio = StringField('Write a short Bio about yourself')
     register = SubmitField('Registrate')
 
@@ -38,15 +38,8 @@ class MealForm(FlaskForm):
 class EditProfileForm(FlaskForm):
     
     new_bio = StringField('Update the short bio about yourself')
+    new_phonenumber = StringField('Phone Number')
+    new_dorm_id = SelectField('Choose your new dormitory', choices=[(0, 'No dorm change'),(1, 'Wohnheim Nollendorfstraße'),(2, 'Halbauer Weg 19-21'),(3, 'Franz-Mehring-Platz 2, 3')], coerce=int)
     update = SubmitField('Update Profile')
 
-    #will be used for later
-    #new_first_name = StringField('First Name')
-    #new_last_name = StringField('Last Name')
-    #username = StringField('Username')
-    #new_email = EmailField('E-Mail-address')
-    #new_password = PasswordField('Password (at least 8 characters)')
-    #new_passwordagain = PasswordField('Repeat Password', validators=[EqualTo('password')]) 
-    #new_phonenumber = StringField('Phone Number')
-    #change_is_cook = BooleanField('I am interested in Cooking for Dorm&Dine')
-    #dorm_id = SelectField('Choose your dormitory', choices=[(1, 'Wohnheim Nollendorfstraße')], coerce=int)
+   

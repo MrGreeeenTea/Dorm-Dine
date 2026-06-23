@@ -4,4 +4,4 @@ parent: Technical Docs
 nav_order: 2
 ---
 
-# for angelina's UI Screens
+# UI Screens

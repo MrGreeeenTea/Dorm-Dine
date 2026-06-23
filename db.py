@@ -22,9 +22,9 @@ def insert_sample():
     db.session.execute(db.delete(Language))
 
     # Beispieldaten erstellen
-    dorm1 = Dorm(name='Wohnheim Nollendorfstraße', adress='Nollendorfstraße 21a', district='Tempelhof-Schöneberg', postcode='10777', place='Berlin')
-    dorm2 = Dorm(name='Wohnheim Halbauer Weg', adress='Halbauer Weg 19-21', district='Lankwitz-Steglitz', postcode='12249', place='Berlin')
-    dorm3 = Dorm(name='Wohnheim Franz-Mehring-Platz', adress='Franz-Mehring-Platz 2, 3', district='Friedrichshain-Kreuzberg', postcode='10243', place='Berlin')
+    dorm1 = Dorm(name='Wohnheim Nollendorfstraße', address='Nollendorfstraße 21a', district='Tempelhof-Schöneberg', postcode='10777', place='Berlin')
+    dorm2 = Dorm(name='Wohnheim Halbauer Weg', address='Halbauer Weg 19-21', district='Lankwitz-Steglitz', postcode='12249', place='Berlin')
+    dorm3 = Dorm(name='Wohnheim Franz-Mehring-Platz', address='Franz-Mehring-Platz 2, 3', district='Friedrichshain-Kreuzberg', postcode='10243', place='Berlin')
 
     user1 = User(email='max.mustermann@example.com', password_hash=generate_password_hash('Password_123'), username='max123', first_name='Max', last_name='Mustermann', bio='Hey, my name is Max and I study Business Information Systems!', is_cook=True, phone_number='+49123456789')
     user1.dorm = dorm1
