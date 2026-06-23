@@ -14,11 +14,22 @@
 
         <p>{{dish.description}}</p>
 
-        <p><strong>Price:<strong>
+        <p><strong>Cook:</strong>
+            <a href="{{ url_for('profile', username=dish.cook.username) }}">
+                {{ dish.cook.first_name }}
+            </a>
+        </p>
+
+        <p><strong>Dorm:</strong>
+        {{ dish.cook.dorm.name }}
+        </p>
+
+        <p><strong>Price:</strong>
         {{ "%.2f"|format(dish.price)}}
         </p>
 
-        <p><strong>Portions left:<strong>
+
+        <p><strong>Portions left:</strong>
         {{ dish.left_portions }}
         </p>
 
@@ -26,6 +37,8 @@
         View Details
         </a>
 
+    </div>
+    </div>
     {% endfor %}
     {% else %}
 

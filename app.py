@@ -49,7 +49,8 @@ def index():
 # feed von den meals
 @app.route('/feed')
 def feed():
-    dishes = db.session.execute(db.select(Dish).order_by(Dish.id)).scalars().all()
+    dishes = db.session.execute(
+        db.select(Dish).filter(Dish.left_portions != 0).order_by(Dish.id)).scalars().all() #ergänzt dass ausgebuchtes essen nicht angezeigt wird
     return render_template('feed.html', dishes=dishes)
 
 # Details zum aufgewählten Gericht
@@ -327,6 +328,7 @@ def dashboard():
         "id": d.id,
         "name": d.name,
         "total_portions": d.total_portions,
+        "left_portions": d.left_portions,
         "status": d.status
     } for d in my_dishes]
 
@@ -335,6 +337,7 @@ def dashboard():
         select(Dish)
         .join(User, Dish.cook_id == User.id)
         .filter(User.dorm_id == selected_dorm_id)
+        .filter(Dish.left_portions != 0) #not showing dishes that are booked out
         .filter(Dish.status.in_(['scheduled', 'active'])) #so it wont show meals that are already completed
     ).scalars().all()
 
@@ -342,9 +345,11 @@ def dashboard():
     current_offers = [{
         "id": o.id,
         "name": o.name,
+        "cook": o.cook.first_name,
+        "cook_username": o.cook.username,
         "description": o.description,
         "price": float(o.price),
-        "total_portions": o.left_portions,
+        "left_portions": o.left_portions,
         "status": o.status
     } for o in offers]
 

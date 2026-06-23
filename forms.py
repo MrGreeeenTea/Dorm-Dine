@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, SubmitField, EmailField, BooleanField, SelectField, PasswordField, IntegerField, TimeField, DateField
-from wtforms.validators import InputRequired, Length, EqualTo
+from wtforms.validators import InputRequired, Length, EqualTo, NumberRange
 
 #https://flask-wtf.readthedocs.io/en/1.2.x/
 
@@ -27,7 +27,7 @@ class MealForm(FlaskForm):
     name = StringField('Name of the Dish', validators=[InputRequired()])
     description = StringField('Description', validators=[InputRequired()])
     price = StringField('Price (€)', validators=[InputRequired()])
-    portions = IntegerField('Available Portions', validators=[InputRequired()])
+    portions = IntegerField('Available Portions', validators=[InputRequired(), NumberRange(min=1)])
     status = SelectField('Status', choices=[('scheduled', 'New'), ('active', 'Ready for Pickup')])
     ingredients = StringField('Ingredients', validators=[InputRequired()])
     pickup_day = DateField('Pickup Day', validators=[InputRequired()])

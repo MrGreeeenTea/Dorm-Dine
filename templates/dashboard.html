@@ -68,6 +68,7 @@
                 <li>
                     <strong>{{ dish.name }}</strong><br>
                     Portions: {{ dish.total_portions }}<br>
+                    Remaining Portions: {{ dish.left_portions }}<br>
                     Status: {{ dish.status }}
                 </li>
             {% endfor %}
@@ -86,7 +87,7 @@
 
 <hr>
 
-<h3>🍽️ Current Offers</h3>
+<h3>🍽️ Current Offers in choosen Dorm </h3>
 
 {% if current_offers %}
     {% for offer in current_offers %}
@@ -103,9 +104,12 @@
 
         <p>
             Available Portions:
-            {{ offer.total_portions }}
+            {{ offer.left_portions }}
         </p>
 
+        <a href="{{ url_for('profile', username=offer.cook_username) }}">
+                Koch: {{ offer.cook }}
+            </a>
 <p>
     <a href="{{ url_for('order_view', dish_id=offer.id) }}" class="dashboard-button">
         Order Now
