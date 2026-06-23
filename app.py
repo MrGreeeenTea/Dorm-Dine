@@ -88,6 +88,16 @@ def complete_order(dish_id, payment_method):
     if portions > dish.left_portions:
         return render_template( 'order_view.html', dish = dish, error = "Not enough portions available.")
     
+    # Save order in database so it appears under "My Orders"
+    new_order = DishOrder(
+        dish_id = dish.id,
+        buyer_id = current_user.id,
+        portions = portions,
+        status = "confirmed"
+    )
+
+    db.session.add(new_order)
+
     dish.left_portions = dish.left_portions - portions
     db.session.commit()
 
@@ -316,7 +326,11 @@ def dashboard():
             "dish_name": o.dish.name,
             "portions": o.portions,
             "price": float(o.dish.price),
-            "status": o.status
+            "status": o.status,
+            "pickup_date": o.dish.pickup_time.strftime("%d.%m.%Y") if o.dish.pickup_time else None,
+            "pickup_time": o.dish.pickup_time.strftime("%H:%M") if o.dish.pickup_time else None,
+            "pickup_timeend": o.dish.pickup_timeend.strftime("%H:%M") if o.dish.pickup_timeend else None,
+            "pickup_location": o.dish.cook.dorm.name if o.dish.cook and o.dish.cook.dorm else None,
         })
 
     # get meals created by this user

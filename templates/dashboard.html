@@ -40,7 +40,7 @@
     {% for order in my_orders %}
         <p>
             <strong>
-                <a href="{{ url_for('meal_detail', dish_id=order.dish_id) }}">
+                <a href="{{ url_for('get_dish', dish_id=order.dish_id) }}"></a>
                     {{ order.dish_name }}
                 </a>
             </strong><br>
@@ -48,6 +48,19 @@
             Status: {{ order.status }}<br>
             Portions: {{ order.portions }}<br>
             Total Price: €{{ order.price * order.portions }}
+
+            <p><strong>Pickup:</strong>
+                {% if order.pickup_time and order.pickup_timeend %}
+                {{ order.pickup_date }},
+                {{ order.pickup_time }} - {{ order.pickup_timeend }}
+            {% else %}
+                No pickup time set
+            {% endif %}
+            </p>
+
+<p><strong>Location:</strong>
+    {{ order.pickup_location }}
+</p>
         </p>
 
         <hr>

@@ -11,6 +11,15 @@
     <p><strong>Portions available:</strong>
         {{ dish.left_portions }} 
     </p>
+    <p><strong>Pickup time:</strong>
+        {% if dish.pickup_time and dish.pickup_timeend %}
+        {{ dish.pickup_time.strftime('%d.%m.%Y') }},
+        {{ dish.pickup_time.strftime('%H:%M') }} -
+        {{ dish.pickup_timeend.strftime('%H:%M') }}
+        {% else %}
+            No pickup time set
+        {% endif %}
+     </p>
     <p><strong>Price:</strong>
         {{ "%.2f"|format(dish.price) }} €
     </p>
