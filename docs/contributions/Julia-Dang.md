@@ -72,6 +72,6 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 
 | #   | AI Tool | Purpose of Use | Affected Sections (Code + Docs) | Remarks, Procedure, Prompts |
 | :-- | :--     | :--            | :--                             | :--                         |
-| 01  |         |                |                                 |                             |
-| 02  |         |                |                                 |                             |
-| ... |         |                |                                 |                             |
+| 01  | ChatGPT | Fix that empty fields overwrite database with empty values | app.py: edit profile | [AI Prompt 1](https://chatgpt.com/share/6a39c990-7f34-83ec-b129-a7a1264ddd1d) I could have thought of if-clauses myself but when I already typed in the prompt I realized too late |
+| 02  | ChatGPT | Fix that SelectField always updates to the first value even when it wasn't selected | app.py: edit profile | [AI Prompt 2](https://chatgpt.com/share/6a39ca32-b918-83ec-ba52-dd914c71bbf9) I tried not to give too many details to solve the problem myself further |
+| 03  | Perplexity AI | Disclaimer Text Placeholder when signing up, I am aware that this is not replacing legal Terms&Conditions | register.html | [AI Prompt 3](https://www.perplexity.ai/search/5618a427-f76a-47da-98ec-402cff8047f3)|
