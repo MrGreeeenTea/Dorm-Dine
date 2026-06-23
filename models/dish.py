@@ -14,6 +14,5 @@ class Dish(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.now())
     status = db.Column(db.Enum('scheduled', 'active', 'sold_out', 'cancelled', 'completed', name='dish_status'), nullable=False, default='scheduled')
     ingredients = db.Column(db.String, nullable=True) #could also use db.text
-    cook = db.relationship("User", foreign_keys=[cook_id])
     dish_orders = db.relationship("DishOrder", back_populates="dish")
-    cook = db.relationship("User", back_populates="dishes")
+    cook = db.relationship("User", foreign_keys=[cook_id], back_populates="dishes")
