@@ -34,6 +34,12 @@ Dorm & Dine is a student-to-student food platform built for dormitory life. Inst
 
 [Assess implementation of improvements / refinements since First Submission (as presented during Oral Examination).]
 
+Cook can see user information of people who made a reservation on their uploaded dishes on dishboard
+
+Adjustions to Login, Register and Edit Profile Form 
+
+Edit Profile Form shows current data while editing and now you can choose to become a cook in the Edit Profile Section
+
 
 {: .fs-2 }
 Last build: {{ site.time | date: '%d %b %Y, %R%:z' }}

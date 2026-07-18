@@ -65,6 +65,11 @@ def get_dish(dish_id):
 @login_required
 def order_view(dish_id):
     dish = db.session.get(Dish, dish_id)
+
+    if current_user.id == dish.cook_id:
+        flash("You can not order your own dish")
+        return redirect(url_for('feed'))
+
     return render_template('order_view.html', dish = dish)
 
 # Payment Success Cash
@@ -163,6 +168,12 @@ def edit_profile(username):
     
     form = forms.EditProfileForm()
 
+    if request.method == 'GET':
+        form.new_bio.data = current_user.bio
+        form.new_phonenumber.data = current_user.phone_number
+        form.new_dorm_id.data = current_user.dorm_id
+        form.new_cook.data = current_user.is_cook
+
     if form.validate_on_submit():
 
         #wird nur aktualisiert, wenn etwas eingegeben wurde; AI Prompt 1 Julia
@@ -173,7 +184,7 @@ def edit_profile(username):
             existing_user = db.session.execute(
                 select(User).filter_by(phone_number=form.new_phonenumber.data)  
             ).scalar_one_or_none()
-            if existing_user: 
+            if existing_user != current_user: 
                 flash('Phone Number is already in use')
                 return render_template('edit_profile.html', title='Edit_Profile', form=form)
             else:
@@ -182,6 +193,7 @@ def edit_profile(username):
         if form.new_dorm_id.data != 0: #SelectField wählt immer automatisch das erste Feld aus, auch wenn keine Entscheidung getroffen wurde, deswegen dem ersten Field Wert Null gegeben; AI Prompt 2 Julia
             current_user.dorm_id = form.new_dorm_id.data
 
+        current_user.is_cook = form.new_cook.data
 
         db.session.commit()
         flash('Profile updated!')
@@ -375,7 +387,7 @@ def dashboard():
         dorm_list=dorm_list,
         my_orders=my_orders,
         current_offers=current_offers,
-        my_meals=my_meals
+        my_dishes=my_dishes #call all dishes objects 
     )
 
 # run app

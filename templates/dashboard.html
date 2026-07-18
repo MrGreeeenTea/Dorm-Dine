@@ -75,14 +75,31 @@
 
     <h3>🍳 My Dishes</h3>
 
-    {% if my_meals %}
+    {% if my_dishes %} <!-- originally used my_meals but to access the buyer information now accessing user's dishes object -->
         <ul>
-            {% for dish in my_meals %}
+            {% for dish in my_dishes %}
                 <li>
                     <strong>{{ dish.name }}</strong><br>
                     Portions: {{ dish.total_portions }}<br>
                     Remaining Portions: {{ dish.left_portions }}<br>
-                    Status: {{ dish.status }}
+                    Status: {{ dish.status }}<br>
+
+                    <!-- same logic as before -->
+                    <strong>Reservations:</strong><br>
+                    {% if dish.dish_orders %} <!-- prüft ob dish eine order hat -->
+                         <ul>
+                            {% for order in dish.dish_orders %}
+                            <li>
+                                Buyer: {{ order.buyer.first_name }} {{ order.buyer.last_name }}<br>
+                                Amount of Portions: {{ order.portions }}<br>
+                                Buyer's Phone Number: {{ order.buyer.phone_number }}<br>
+                            </li>
+                            {% endfor %}
+                         </ul>
+                    {% else %}
+                        No reservations yet.<br>
+                    {% endif %}
+
                 </li>
             {% endfor %}
         </ul>
