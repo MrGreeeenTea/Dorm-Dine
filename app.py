@@ -114,6 +114,12 @@ def complete_order(dish_id, payment_method):
 @app.route('/post', methods=['GET', 'POST'])
 @login_required
 def post_meal():
+
+    # CATCH: Only cooks can post meals
+    if not current_user.is_cook:
+        flash('Only registered cooks can offer dishes!', 'danger')
+        return redirect(url_for('dashboard'))
+    
     form = MealForm() #form object erstellen, html template frontend tool
    
     if form.validate_on_submit():
@@ -389,6 +395,95 @@ def dashboard():
         current_offers=current_offers,
         my_dishes=my_dishes #call all dishes objects 
     )
+
+# edit meal
+@app.route('/dishes/<int:dish_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_meal(dish_id):
+    dish = db.session.get(Dish, dish_id)
+    
+    # does the dish exist?
+    if not dish:
+        flash("Dish not found.", "danger")
+        return redirect(url_for('dashboard'))
+        
+    # only the cook who created the dish can edit it
+    if dish.cook_id != current_user.id:
+        flash("You are not authorized to edit this dish.", "danger")
+        return redirect(url_for('dashboard'))
+
+    form = MealForm()
+
+    # pre-fill the form with existing dish data when the page is loaded
+    if request.method == 'GET':
+        form.name.data = dish.name
+        form.description.data = dish.description
+        form.price.data = dish.price
+        form.portions.data = dish.total_portions
+        form.status.data = dish.status
+        form.ingredients.data = dish.ingredients
+        if dish.pickup_time:
+            form.pickup_day.data = dish.pickup_time.date()
+            form.time_start.data = dish.pickup_time.time()
+        if dish.pickup_timeend:
+            form.time_end.data = dish.pickup_timeend.time()
+
+    if form.validate_on_submit():
+        # combine day + start time to a single datetime object
+        start_datetime = datetime.combine(form.pickup_day.data, form.time_start.data)
+        end_datetime = datetime.combine(form.pickup_day.data, form.time_end.data)
+        
+        # update the dish with the new data from the form
+        dish.name = form.name.data
+        dish.description = form.description.data
+        dish.price = form.price.data
+        # very important: update left_portions to match total_portions if the total_portions has changed
+        if dish.total_portions != form.portions.data:
+            dish.left_portions = form.portions.data
+        dish.total_portions = form.portions.data
+        dish.pickup_time = start_datetime
+        dish.pickup_timeend = end_datetime
+        dish.status = form.status.data
+        dish.ingredients = form.ingredients.data
+
+        db.session.commit()
+        flash('Dish updated successfully!', 'success')
+        return redirect(url_for('dashboard'))
+
+    return render_template('post_meal.html', form=form, title="Edit Dish")
+
+# delete meal
+@app.route('/dishes/<int:dish_id>/delete', methods=['POST'])
+@login_required
+def delete_meal(dish_id):
+    dish = db.session.get(Dish, dish_id)
+    
+    # does the dish exist?
+    if not dish:
+        flash("Dish not found.", "danger")
+        return redirect(url_for('dashboard'))
+        
+    # only the cook who created the dish can delete it
+    if dish.cook_id != current_user.id:
+        flash("You are not authorized to delete this dish.", "danger")
+        return redirect(url_for('dashboard'))
+
+    # check if the dish has already been ordered
+    already_ordered = db.session.execute(
+        select(DishOrder).filter_by(dish_id=dish_id)
+    ).scalars().first()
+
+    if already_ordered:
+        # if there are any orders for this dish, prevent deletion and show a message
+        flash("This dish cannot be deleted because it has already been ordered by students!", "danger")
+        return redirect(url_for('dashboard'))
+
+    # if no orders exist, proceed with deletion
+    db.session.delete(dish)
+    db.session.commit()
+    
+    flash('Dish deleted successfully!', 'success')
+    return redirect(url_for('dashboard'))
 
 # run app
 if __name__ == '__main__':

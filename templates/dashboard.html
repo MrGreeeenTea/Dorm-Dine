@@ -11,6 +11,14 @@
     border: 1px solid black;
     text-decoration: none;
 }
+
+.btn-danger-outline {
+    background: none;
+    border: 1px solid red;
+    color: red;
+    padding: 4px 8px;
+    cursor: pointer;
+}
 </style>
 
 <h2>My Dashboard</h2>
@@ -84,6 +92,21 @@
                     Remaining Portions: {{ dish.left_portions }}<br>
                     Status: {{ dish.status }}<br>
 
+                    <!-- new function for edit and delete -->
+                    <div style="margin-top: 5px; margin-bottom: 10px;">
+                        <!-- route link -->
+                        <a href="{{ url_for('edit_meal', dish_id=dish.id) }}" class="dashboard-button" style="padding: 4px 8px; font-size: 0.9em; margin-right: 5px;">
+                            Edit Dish
+                        </a>
+                        
+                        <!-- POST-Formular for deletion -->
+                        <form action="{{ url_for('delete_meal', dish_id=dish.id) }}" method="POST" style="display: inline;">
+                            <button type="submit" class="btn-danger-outline" style="font-size: 0.9em;">
+                                Delete Dish
+                            </button>
+                        </form>
+                    </div>
+                    
                     <!-- same logic as before -->
                     <strong>Reservations:</strong><br>
                     {% if dish.dish_orders %} <!-- prüft ob dish eine order hat -->

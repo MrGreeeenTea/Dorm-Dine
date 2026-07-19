@@ -39,7 +39,7 @@ def insert_sample():
     lang1 = Language(name='German')
     lang2 = Language(name='English')
 
-    db.session.add_all([dorm1, dorm2, dorm3, user1, user2, tag1, tag2, lang1, lang2])
+    db.session.add_all([dorm1, dorm2, dorm3, user1, user2, user3, tag1, tag2, lang1, lang2])
     db.session.commit()
 
     from datetime import datetime

@@ -36,6 +36,14 @@
         <p>
             {{ form.time_end.label }}<br>
             {{ form.time_end(type="time") }}
+
+            {% if form.time_end.errors %}
+                <div style="color: red; margin-top: 5px; font-size: 0.9em; font-weight: bold;">
+                    {% for error in form.time_end.errors %}
+                        <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </p>
             {{ form.ingredients.label }}<br>
             {{ form.ingredients(size=32, placeholder="e.g. Pasta, Cheese, Onions") }}

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, SubmitField, EmailField, BooleanField, SelectField, PasswordField, IntegerField, TimeField, DateField, TelField
-from wtforms.validators import InputRequired, Length, EqualTo, NumberRange
+from wtforms.validators import InputRequired, Length, EqualTo, NumberRange, ValidationError
 
 #https://flask-wtf.readthedocs.io/en/1.2.x/
 
@@ -34,6 +34,11 @@ class MealForm(FlaskForm):
     time_start = TimeField('Available From', validators=[InputRequired()])
     time_end = TimeField('Available Until', validators=[InputRequired()])
     submit = SubmitField('Offer Dish')
+
+    # Backend safety check to ensure that the end time is after the start time
+    def validate_time_end(self, field):
+        if self.time_start.data and field.data <= self.time_start.data:
+            raise ValidationError('Your end time must be after your start time. Please select a valid end time.')
 
 class EditProfileForm(FlaskForm):
     
