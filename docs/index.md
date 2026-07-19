@@ -34,11 +34,24 @@ Dorm & Dine is a student-to-student food platform built for dormitory life. Inst
 
 [Assess implementation of improvements / refinements since First Submission (as presented during Oral Examination).]
 
-Cook can see user information of people who made a reservation on their uploaded dishes on dishboard
+Julia:
 
-Adjustions to Login, Register and Edit Profile Form 
+-Cook can see user information of people who made a reservation on their uploaded dishes on dishboard
 
-Edit Profile Form shows current data while editing and now you can choose to become a cook in the Edit Profile Section
+-Adjustions to Login, Register and Edit Profile Form 
+
+-Edit Profile Form shows current data while editing and now you can choose to become a cook in the Edit Profile Section
+
+
+Luisa:
+
+-Backend Time Validator added to enforce the cook cannot set an endtime that is before the starttime. (forms.py + post_meal.html)
+
+-Edit and delete meals was added as a fuctionality to my dishes on dashboard. Deletion can only be done if no one has ordered the dish! (app.py + dashboard.html)
+
+-Db sample was missing user3 in commit, small fix (db.py)
+
+-Made it so only cooks can post meals. Previously a user who isn't a cook could /post. (app.py)
 
 
 {: .fs-2 }
