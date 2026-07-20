@@ -27,6 +27,64 @@ bootstrap = Bootstrap5(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dormanddine.db"
 db.init_app(app)
 
+# Sucht nach Keywords, ansonsten wird ein Others Bild angezeigt
+ICON_KEYWORDS = {
+    "pizza":   ["pizza", "margherita", "salami pizza", "flammkuchen"],
+    "burger":  ["burger", "hamburger", "cheeseburger", "patty", "bun"],
+    "burrito": ["burrito", "wrap", "taco", "tacos", "quesadilla", "fajita",
+                "tortilla", "mexican", "mexikanisch"],
+    "pasta":   ["pasta", "spaghetti", "nudel", "nudeln", "noodle", "noodles",
+                "lasagne", "lasagna", "penne", "tagliatelle", "carbonara",
+                "bolognese", "ravioli", "gnocchi", "mac and cheese",
+                "maccheroni", "makkaroni", "farfalle", "fusilli"],
+    "rice":    ["rice", "reis", "reispfanne", "fried rice", "gebratener reis",
+                "risotto", "paella", "wok", "stir fry", "stir-fry",
+                "bibimbap", "sushi", "jollof"],
+    "curry":   ["curry", "masala", "tikka", "dal", "daal", "korma",
+                "vindaloo", "thai curry", "green curry", "red curry",
+                "butter chicken"],
+    "soup":    ["soup", "suppe", "eintopf", "stew", "broth", "bruehe",
+                "ramen", "pho", "minestrone", "chili", "chilli", "goulash",
+                "gulasch", "linsensuppe", "tomatensuppe"],
+    "salad":   ["salad", "salat", "bowl", "buddha bowl", "caesar",
+                "coleslaw", "greek salad", "griechischer salat", "rohkost"],
+    "pancakes":["pancake", "pancakes", "pfannkuchen", "crepe", "crepes",
+                "waffle", "waffel", "waffeln", "breakfast", "fruehstueck",
+                "eierkuchen", "porridge", "oatmeal", "haferbrei"],
+    "dessert": ["dessert", "cake", "kuchen", "muffin", "cupcake", "cookie",
+                "keks", "brownie", "eis", "ice cream", "pudding", "tiramisu",
+                "sweet", "suess", "nachtisch", "torte", "donut", "doughnut"],
+}
+DEFAULT_ICON = "other"
+ICON_DIR = "images"
+
+def icon_for_dish(dish):
+    icon_obj = getattr(dish, "icon", None)
+    if icon_obj is not None:
+        manual = (getattr(icon_obj, "name", "") or "").strip().lower()
+        if manual in ICON_KEYWORDS or manual == DEFAULT_ICON:
+            return f"{ICON_DIR}/{manual}.png"
+
+    # Alle Textfelder + Tags zu einem durchsuchbaren String zusammenfassen
+    parts = [
+        getattr(dish, "name", "") or "",
+        getattr(dish, "description", "") or "",
+        getattr(dish, "ingredients", "") or "",
+    ]
+    tags = getattr(dish, "tags", None)
+    if tags:
+        parts.extend(getattr(t, "name", "") or "" for t in tags)
+    haystack = " ".join(parts).lower()
+
+    for key, keywords in ICON_KEYWORDS.items():
+        if any(kw in haystack for kw in keywords):
+            return f"{ICON_DIR}/{key}.png"
+
+    return f"{ICON_DIR}/{DEFAULT_ICON}.png"
+
+
+# Funktion in allen Templates verfuegbar machen
+app.jinja_env.globals["icon_for_dish"] = icon_for_dish
 
 login_manager = LoginManager() 
 login_manager.init_app(app)

@@ -6,7 +6,12 @@
 
 <div class = "card mb-3">
 <div class = "card-body">
-    <h4 class = "card-title">{{ dish.name }}</h4>
+    <div class="d-flex align-items-center mb-3">
+        <img src="{{ url_for('static', filename=icon_for_dish(dish)) }}"
+             alt="{{ dish.name }}" class="me-3"
+             style="width:96px; height:96px; border-radius:18px; object-fit:cover; background:#f4eefb; flex-shrink:0;">
+        <h4 class = "card-title mb-0">{{ dish.name }}</h4>
+    </div>
 
     <p><strong>Portions available:</strong>
         {{ dish.left_portions }} 
