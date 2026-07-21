@@ -73,6 +73,7 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 | Updated database| [Comit 16](https://github.com/MrGreeeenTea/Dorm-Dine/commit/394675677a11cbc8763c7192132489207f74a067) |  |
 | Updated Value Proposition, data model, UI Screens | [Comit 17](https://github.com/MrGreeeenTea/Dorm-Dine/commit/7483fea0c1fc3687fe34c02964eb1864bcc1d608) | |
 | Small bug fixes  | [Comit 17](https://github.com/MrGreeeenTea/Dorm-Dine/commit/7483fea0c1fc3687fe34c02964eb1864bcc1d608) |  |
+
 ---
 
 ## AI Directory
