@@ -70,10 +70,9 @@ Mir ist weiterhin bewusst, dass ich, sofern ich zur Erstellung dieser Arbeit KI-
 | Data Model | [Commit 14](https://github.com/MrGreeeenTea/Dorm-Dine/commit/e17cf3e7143d9714925784d4397d42c5202f19e0) | [freecodecamp](https://www.freecodecamp.org/news/crows-foot-notation-relationship-symbols-and-how-to-read-diagrams/) |
 | app.py (order confirmation - added cook's name, phone number , pickup time, location) | [Commit 14](https://github.com/MrGreeeenTea/Dorm-Dine/commit/0d1dd07e3966577d84d54de8d3c195f2751a4158) |  |
 | recording our application for the first submission | [Comit 15](https://github.com/MrGreeeenTea/Dorm-Dine/commit/01e359f50908ce0e31647941cc7d8f17873097f5) |  |
-| Updated our data model | [Comit 16](https://github.com/MrGreeeenTea/Dorm-Dine/commit/394675677a11cbc8763c7192132489207f74a067) |  |
-| :-- | :-- | :-- |
-
-
+| Updated database| [Comit 16](https://github.com/MrGreeeenTea/Dorm-Dine/commit/394675677a11cbc8763c7192132489207f74a067) |  |
+| Updated Value Proposition, data model, UI Screens | [Comit 17](https://github.com/MrGreeeenTea/Dorm-Dine/commit/7483fea0c1fc3687fe34c02964eb1864bcc1d608) | |
+| Small bug fixes  | [Comit 17](https://github.com/MrGreeeenTea/Dorm-Dine/commit/7483fea0c1fc3687fe34c02964eb1864bcc1d608) |  |
 ---
 
 ## AI Directory

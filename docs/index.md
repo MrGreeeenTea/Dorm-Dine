@@ -21,7 +21,7 @@ Dorm & Dine is a student-to-student food platform built for dormitory life. Inst
 
 **Julia:**
 
-* Cook can see user information of people who made a reservation on their uploaded dishes on dishboard
+* Cook can see user information of people who made a reservation on their uploaded dishes on dishboard and can't order his own meals anymore
 
 * Adjustions to Login, Register and Edit Profile Form 
 
