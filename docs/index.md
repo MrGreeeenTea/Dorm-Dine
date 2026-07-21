@@ -15,43 +15,36 @@ Dorm & Dine is a student-to-student food platform built for dormitory life. Inst
 ![landing page](assets\images\landing_page.png)
 ---
 
-# Feed
-
-![Feed](assets\images\feed.png)
----
-
-# Dashbaord
-
-![Dashboard](assets\images\dashboard.png)
----
-
-# Profil
-
-![Profil](assets\images\profil.png)
----
-
 ## Improvements / Refinements since First Submission
 
 [Assess implementation of improvements / refinements since First Submission (as presented during Oral Examination).]
 
-Julia:
+**Julia:**
 
--Cook can see user information of people who made a reservation on their uploaded dishes on dishboard
+* Cook can see user information of people who made a reservation on their uploaded dishes on dishboard
 
--Adjustions to Login, Register and Edit Profile Form 
+* Adjustions to Login, Register and Edit Profile Form 
 
--Edit Profile Form shows current data while editing and now you can choose to become a cook in the Edit Profile Section
+* Edit Profile Form shows current data while editing and now you can choose to become a cook in the Edit Profile Section
 
 
-Luisa:
+**Luisa:**
 
--Backend Time Validator added to enforce the cook cannot set an endtime that is before the starttime. (forms.py + post_meal.html)
+* Backend Time Validator added to enforce the cook cannot set an endtime that is before the starttime. (forms.py + post_meal.html)
 
--Edit and delete meals was added as a fuctionality to my dishes on dashboard. Deletion can only be done if no one has ordered the dish! (app.py + dashboard.html)
+* Edit and delete meals was added as a fuctionality to my dishes on dashboard. Deletion can only be done if no one has ordered the dish! (app.py + dashboard.html)
 
--Db sample was missing user3 in commit, small fix (db.py)
+* Db sample was missing user3 in commit, small fix (db.py)
 
--Made it so only cooks can post meals. Previously a user who isn't a cook could /post. (app.py)
+* Made it so only cooks can post meals. Previously a user who isn't a cook could /post. (app.py)
+
+**Angelina Ye:**
+
+* **UI Screens updated** - added new pictures
+* **Database updated** - removed unused tables,  cleaned up the remaining models
+* **Data model changed** - updated the ERD to match the tables actually in use, added a before/after comparison
+* **Value proposition updated** - added a before/after comparison to the scope description: which features were actually implemented and which were dropped
+* **Testing & small bugfixes** - translated leftover German UI text into English 
 
 
 {: .fs-2 }
