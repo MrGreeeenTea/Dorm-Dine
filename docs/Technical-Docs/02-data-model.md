@@ -31,8 +31,8 @@ The tables that are actually used in the code were kept: `dorm`, `user, dish`, `
 
 ## Before:
 
-![data model - Dorm & Dine](assets\images\Dorm&Dine_Data_Model.drawio.png)
+![data model - Dorm & Dine](../assets\images\Dorm&Dine_Data_Model.drawio.png)
 
 ## After:
 
-![data model - Dorm & Dine](assets\images\Dorm&Dine_Data_Model(final).png)
+![data model - Dorm & Dine](../assets\images\Dorm&Dine_Data_Model(final).png)
