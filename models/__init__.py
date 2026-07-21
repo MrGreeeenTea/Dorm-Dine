@@ -3,10 +3,5 @@ from models.dorm import Dorm
 from models.dish import Dish
 from models.dish_order import DishOrder
 from models.dish_tag import DishTag
-from models.dish_photo import DishPhoto
 from models.tag import Tag
-from models.language import Language
-from models.user_language import UserLanguage
 from models.message import Message
-from models.notification import Notification
-from models.icon import Icon

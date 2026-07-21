@@ -9,17 +9,14 @@ def insert_sample():
     from models.dish import Dish
     from models.tag import Tag
     from models.dish_tag import DishTag
-    from models.language import Language
-    from models.user_language import UserLanguage
+
 
     # Alle bestehenden Daten löschen
-    db.session.execute(db.delete(UserLanguage))
     db.session.execute(db.delete(DishTag))
     db.session.execute(db.delete(Dish))
     db.session.execute(db.delete(User))
     db.session.execute(db.delete(Dorm))
     db.session.execute(db.delete(Tag))
-    db.session.execute(db.delete(Language))
 
     # Beispieldaten erstellen
     dorm1 = Dorm(name='Wohnheim Nollendorfstraße', address='Nollendorfstraße 21a', district='Tempelhof-Schöneberg', postcode='10777', place='Berlin')
@@ -36,10 +33,8 @@ def insert_sample():
     tag1 = Tag(name='Italian')
     tag2 = Tag(name='comfort food')
 
-    lang1 = Language(name='German')
-    lang2 = Language(name='English')
 
-    db.session.add_all([dorm1, dorm2, dorm3, user1, user2, user3, tag1, tag2, lang1, lang2])
+    db.session.add_all([dorm1, dorm2, dorm3, user1, user2, user3, tag1, tag2])
     db.session.commit()
 
     from datetime import datetime
@@ -51,7 +46,5 @@ def insert_sample():
     db.session.add_all([
         DishTag(dish_id=dish1.id, tag_id=tag1.id),
         DishTag(dish_id=dish1.id, tag_id=tag2.id),
-        UserLanguage(user_id=user1.id, language_id=lang1.id),
-        UserLanguage(user_id=user1.id, language_id=lang2.id),
     ])
     db.session.commit()

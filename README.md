@@ -6,7 +6,7 @@ Dorm & Dine is a student-to-student food platform built for dormitory life. Inst
 ---
 
 ## Tech Stack
-- **Python 3.10+**
+- **Python**
 - **Flask** - web framework
 - **Flask-SQLAlchemy** -  ORM 
 - **Bootstrap-Flask** - UI components
@@ -51,8 +51,6 @@ To populate the database with sample dorms, users, and meals, visit the followin
 ```
 http://localhost:5000/insert/sample
 ```
-
-**Warning:** Do not use it in production.
 
 ---
 ## Routes

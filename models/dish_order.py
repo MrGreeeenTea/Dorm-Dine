@@ -15,4 +15,3 @@ class DishOrder(db.Model):
     buyer = db.relationship("User", foreign_keys="DishOrder.buyer_id", back_populates="dish_orders")
     dish = db.relationship("Dish", back_populates="dish_orders")
     messages = db.relationship("Message", back_populates="dish_order")
-    notifications = db.relationship("Notification", back_populates="dish_order")

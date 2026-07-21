@@ -20,7 +20,6 @@ class User(UserMixin, db.Model):
     dish_orders = db.relationship("DishOrder", back_populates="buyer")
     sent_messages = db.relationship("Message", foreign_keys="Message.sender_id", back_populates="sender")
     received_messages = db.relationship("Message", foreign_keys="Message.receiver_id", back_populates="receiver")
-    notifications = db.relationship("Notification", back_populates="user")
     dishes = db.relationship("Dish", back_populates="cook")
 
 
