@@ -46,6 +46,13 @@ Dorm & Dine is a student-to-student food platform built for dormitory life. Inst
 * **Value proposition updated** - added a before/after comparison to the scope description: which features were actually implemented and which were dropped
 * **Testing & small bugfixes** - translated leftover German UI text into English 
 
+**Lars Unger:**
 
+* Added PNG icons for 10 common food categories plus a fallback "others" icon (static/images)
+
+* Integrated icon display into the dish feed and meal detail views (templates/feed.html; templates/meal_detail.html)
+
+* Implemented keyword-based matching logic that selects the icon whose food category best matches each dish (app.py)
+* 
 {: .fs-2 }
 Last build: {{ site.time | date: '%d %b %Y, %R%:z' }}
